@@ -18,26 +18,26 @@
     <div class="grid md:grid-cols-2 gap-5">
 
         {{-- Đổi mật khẩu --}}
-        <div class="bg-white rounded-2xl border border-rose-100 shadow-card p-5">
+        <div class="bg-white rounded-2xl border border-pink-100 shadow-card p-5">
             <div class="font-semibold mb-3">Đổi mật khẩu</div>
             <form method="POST" action="{{ route('account.security.password') }}" class="space-y-3">
                 @csrf
                 <div>
                     <label class="block text-sm mb-1">Mật khẩu hiện tại</label>
                     <input name="current_password" type="password" required
-                        class="w-full rounded-md border border-rose-200 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
-                    @error('current_password')<div class="text-sm text-rose-600 mt-1">{{ $message }}</div>@enderror
+                        class="w-full rounded-md border border-pink-200 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
+                    @error('current_password')<div class="text-sm text-pink-600 mt-1">{{ $message }}</div>@enderror
                 </div>
                 <div>
                     <label class="block text-sm mb-1">Mật khẩu mới</label>
                     <input name="password" type="password" required
-                        class="w-full rounded-md border border-rose-200 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
-                    @error('password')<div class="text-sm text-rose-600 mt-1">{{ $message }}</div>@enderror
+                        class="w-full rounded-md border border-pink-200 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
+                    @error('password')<div class="text-sm text-pink-600 mt-1">{{ $message }}</div>@enderror
                 </div>
                 <div>
                     <label class="block text-sm mb-1">Xác nhận mật khẩu</label>
                     <input name="password_confirmation" type="password" required
-                        class="w-full rounded-md border border-rose-200 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
+                        class="w-full rounded-md border border-pink-200 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
                 </div>
                 <button class="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700">Cập nhật mật khẩu</button>
             </form>
@@ -45,21 +45,21 @@
         </div>
 
         {{-- Đổi email đăng nhập --}}
-        <div class="bg-white rounded-2xl border border-rose-100 shadow-card p-5">
+        <div class="bg-white rounded-2xl border border-pink-100 shadow-card p-5">
             <div class="font-semibold mb-3">Đổi email đăng nhập</div>
             <form method="POST" action="{{ route('account.security.email') }}" class="space-y-3">
                 @csrf
                 <div>
                     <label class="block text-sm mb-1">Email mới</label>
                     <input name="email" type="email" value="{{ old('email', auth()->user()->email) }}" required
-                        class="w-full rounded-md border border-rose-200 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
-                    @error('email')<div class="text-sm text-rose-600 mt-1">{{ $message }}</div>@enderror
+                        class="w-full rounded-md border border-pink-200 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
+                    @error('email')<div class="text-sm text-pink-600 mt-1">{{ $message }}</div>@enderror
                 </div>
                 <div>
                     <label class="block text-sm mb-1">Mật khẩu hiện tại</label>
                     <input name="current_password" type="password" required
-                        class="w-full rounded-md border border-rose-200 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
-                    @error('current_password')<div class="text-sm text-rose-600 mt-1">{{ $message }}</div>@enderror
+                        class="w-full rounded-md border border-pink-200 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
+                    @error('current_password')<div class="text-sm text-pink-600 mt-1">{{ $message }}</div>@enderror
                 </div>
                 <button class="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700">Cập nhật email</button>
             </form>
@@ -67,7 +67,7 @@
     </div>
 
     {{-- Phiên đăng nhập & thiết bị --}}
-    <div class="bg-white rounded-2xl border border-rose-100 shadow-card p-5 mt-5">
+    <div class="bg-white rounded-2xl border border-pink-100 shadow-card p-5 mt-5">
         <div class="flex items-center justify-between mb-3">
             <div>
                 <div class="font-semibold">Phiên đăng nhập & thiết bị</div>
@@ -91,8 +91,8 @@
         </div>
         @else
         <div class="text-sm text-ink/70">
-            Không có danh sách phiên. Để hiển thị, bật <code class="bg-rose-50 px-1 rounded">SESSION_DRIVER=database</code> rồi chạy:
-            <code class="bg-rose-50 px-1 rounded">php artisan session:table && php artisan migrate</code>.
+            Không có danh sách phiên. Để hiển thị, bật <code class="bg-pink-50 px-1 rounded">SESSION_DRIVER=database</code> rồi chạy:
+            <code class="bg-pink-50 px-1 rounded">php artisan session:table && php artisan migrate</code>.
         </div>
         @endif
 
@@ -100,9 +100,9 @@
             @csrf
             <label class="text-sm">Nhập mật khẩu hiện tại để đăng xuất các thiết bị khác</label>
             <input type="password" name="current_password"
-                class="w-full border border-rose-200 rounded px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400" required>
+                class="w-full border border-pink-200 rounded px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400" required>
             @error('current_password')<div class="text-red-600 text-sm">{{ $message }}</div>@enderror
-            <button class="px-3 py-2 bg-rose-600 text-white rounded hover:bg-rose-700">Đăng xuất thiết bị khác</button>
+            <button class="px-3 py-2 bg-pink-600 text-white rounded hover:bg-pink-700">Đăng xuất thiết bị khác</button>
         </form>
     </div>
 </div>

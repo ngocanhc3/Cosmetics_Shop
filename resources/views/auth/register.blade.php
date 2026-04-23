@@ -10,25 +10,25 @@
         <div>
             <label class="block text-sm mb-1">Họ tên</label>
             <input name="name" value="{{ old('name') }}" required
-                class="w-full border border-rose-200 rounded px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
-            @error('name')<div class="text-sm text-rose-600 mt-1">{{ $message }}</div>@enderror
+                class="w-full border border-pink-200 rounded px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
+            @error('name')<div class="text-sm text-pink-600 mt-1">{{ $message }}</div>@enderror
         </div>
         <div>
             <label class="block text-sm mb-1">Email</label>
             <input name="email" type="email" value="{{ old('email') }}" required
-                class="w-full border border-rose-200 rounded px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
-            @error('email')<div class="text-sm text-rose-600 mt-1">{{ $message }}</div>@enderror
+                class="w-full border border-pink-200 rounded px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
+            @error('email')<div class="text-sm text-pink-600 mt-1">{{ $message }}</div>@enderror
         </div>
         <div>
             <label class="block text-sm mb-1">Mật khẩu</label>
             <input name="password" type="password" required
-                class="w-full border border-rose-200 rounded px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
-            @error('password')<div class="text-sm text-rose-600 mt-1">{{ $message }}</div>@enderror
+                class="w-full border border-pink-200 rounded px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
+            @error('password')<div class="text-sm text-pink-600 mt-1">{{ $message }}</div>@enderror
         </div>
         <div>
             <label class="block text-sm mb-1">Xác nhận mật khẩu</label>
             <input name="password_confirmation" type="password" required
-                class="w-full border border-rose-200 rounded px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
+                class="w-full border border-pink-200 rounded px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
         </div>
 
         <button class="w-full bg-brand-600 hover:bg-brand-700 text-white rounded px-4 py-2">Tạo tài khoản</button>

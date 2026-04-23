@@ -27,7 +27,7 @@ $cur = request('status');
 
         @php $active = ($cur===null || $cur===''); $count = (int)($counts['all'] ?? 0); @endphp
         <a href="{{ route('admin.shipvouchers.index', $qs) }}"
-            class="btn btn-ghost btn-sm {{ $active ? 'bg-rose-600 text-white hover:bg-rose-600' : '' }}">
+            class="btn btn-ghost btn-sm {{ $active ? 'bg-pink-600 text-white hover:bg-pink-600' : '' }}">
             Tất cả
             <span class="ml-1 text-xs rounded-full px-1.5 {{ $active ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600' }}">
                 {{ $count }}
@@ -36,7 +36,7 @@ $cur = request('status');
 
         @php $active = ($cur==='running'); $count = (int)($counts['running'] ?? 0); @endphp
         <a href="{{ route('admin.shipvouchers.index', array_merge($qs,['status'=>'running'])) }}"
-            class="btn btn-ghost btn-sm {{ $active ? 'bg-rose-600 text-white hover:bg-rose-600' : '' }}">
+            class="btn btn-ghost btn-sm {{ $active ? 'bg-pink-600 text-white hover:bg-pink-600' : '' }}">
             Đang diễn ra
             <span class="ml-1 text-xs rounded-full px-1.5 {{ $active ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600' }}">
                 {{ $count }}
@@ -45,7 +45,7 @@ $cur = request('status');
 
         @php $active = ($cur==='expired'); $count = (int)($counts['expired'] ?? 0); @endphp
         <a href="{{ route('admin.shipvouchers.index', array_merge($qs,['status'=>'expired'])) }}"
-            class="btn btn-ghost btn-sm {{ $active ? 'bg-rose-600 text-white hover:bg-rose-600' : '' }}">
+            class="btn btn-ghost btn-sm {{ $active ? 'bg-pink-600 text-white hover:bg-pink-600' : '' }}">
             Hết hạn
             <span class="ml-1 text-xs rounded-full px-1.5 {{ $active ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600' }}">
                 {{ $count }}
@@ -54,7 +54,7 @@ $cur = request('status');
 
         @php $active = ($cur==='active'); $count = (int)($counts['active'] ?? 0); @endphp
         <a href="{{ route('admin.shipvouchers.index', array_merge($qs,['status'=>'active'])) }}"
-            class="btn btn-ghost btn-sm {{ $active ? 'bg-rose-600 text-white hover:bg-rose-600' : '' }}">
+            class="btn btn-ghost btn-sm {{ $active ? 'bg-pink-600 text-white hover:bg-pink-600' : '' }}">
             Đang bật
             <span class="ml-1 text-xs rounded-full px-1.5 {{ $active ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600' }}">
                 {{ $count }}
@@ -63,7 +63,7 @@ $cur = request('status');
 
         @php $active = ($cur==='inactive'); $count = (int)($counts['inactive'] ?? 0); @endphp
         <a href="{{ route('admin.shipvouchers.index', array_merge($qs,['status'=>'inactive'])) }}"
-            class="btn btn-ghost btn-sm {{ $active ? 'bg-rose-600 text-white hover:bg-rose-600' : '' }}">
+            class="btn btn-ghost btn-sm {{ $active ? 'bg-pink-600 text-white hover:bg-pink-600' : '' }}">
             Đang tắt
             <span class="ml-1 text-xs rounded-full px-1.5 {{ $active ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600' }}">
                 {{ $count }}

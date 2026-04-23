@@ -9,11 +9,11 @@
         <span class="text-ink">{{ $brand->name }}</span>
     </div>
 
-    <div class="bg-white border border-rose-100 rounded-2xl p-4 flex items-center gap-4">
+    <div class="bg-white border border-pink-100 rounded-2xl p-4 flex items-center gap-4">
         @if($brand->logo)
         <img src="{{ asset('storage/'.$brand->logo) }}" class="w-16 h-16 object-contain rounded-md" alt="{{ $brand->name }}">
         @else
-        <div class="w-16 h-16 rounded-md bg-rose-50 grid place-items-center text-2xl">🅱</div>
+        <div class="w-16 h-16 rounded-md bg-pink-50 grid place-items-center text-2xl">🅱</div>
         @endif
         <div>
             <h1 class="text-xl font-bold">{{ $brand->name }}</h1>

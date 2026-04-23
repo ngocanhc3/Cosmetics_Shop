@@ -11,7 +11,7 @@ if ($imgs->isEmpty()) $imgs = collect(['https://placehold.co/800x800?text=IMG'])
 
 <div x-data="pdpGallery(@js($imgs))" class="space-y-3" id="jsPdpGallery">
     {{-- Ảnh chính + kính lúp --}}
-    <div class="relative rounded-2xl overflow-hidden border border-rose-100 bg-white md:max-w-[560px] mx-auto">
+    <div class="relative rounded-2xl overflow-hidden border border-pink-100 bg-white md:max-w-[560px] mx-auto">
         <img
             :src="imgs[i]"
             class="w-full aspect-square object-contain select-none"
@@ -22,7 +22,7 @@ if ($imgs->isEmpty()) $imgs = collect(['https://placehold.co/800x800?text=IMG'])
         {{-- kính lúp chỉ hiện trên md+ --}}
         <div
             x-show="zoom"
-            class="hidden md:block absolute right-3 top-3 w-56 h-56 rounded-xl border border-rose-100 bg-white shadow-card overflow-hidden"
+            class="hidden md:block absolute right-3 top-3 w-56 h-56 rounded-xl border border-pink-100 bg-white shadow-card overflow-hidden"
             :style="`background-image:url(${imgs[i]}); background-repeat:no-repeat; background-size:${zsize}% ${zsize}%; background-position:${zx}% ${zy}%;`"></div>
     </div>
 
@@ -31,7 +31,7 @@ if ($imgs->isEmpty()) $imgs = collect(['https://placehold.co/800x800?text=IMG'])
         @foreach($imgs as $k => $u)
         <button type="button"
             class="shrink-0 w-16 h-16 rounded-lg overflow-hidden border"
-            :class="i === {{ $k }} ? 'border-brand-600' : 'border-rose-100'"
+            :class="i === {{ $k }} ? 'border-brand-600' : 'border-pink-100'"
             @click="set({{ $k }})">
             <img src="{{ $u }}" class="w-full h-full object-cover" loading="lazy">
         </button>

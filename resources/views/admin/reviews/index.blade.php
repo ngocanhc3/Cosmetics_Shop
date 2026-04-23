@@ -131,7 +131,7 @@ $to = $reviews->total() ? ($from + $reviews->count() - 1) : 0;
                 </td>
                 <td>
                     @if($r->product)
-                    <a class="text-blue-600 hover:underline"
+                    <a class="text-pink-600 hover:underline"
                         href="{{ route('product.show', $r->product->slug) }}" target="_blank">
                         {{ $r->product->name }}
                     </a>

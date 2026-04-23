@@ -21,7 +21,7 @@ $q->orWhere('user_id', $viewerId);
 
 <div class="space-y-4">
     @forelse($reviews as $rv)
-    <div class="p-4 border border-rose-100 rounded-xl bg-white">
+    <div class="p-4 border border-pink-100 rounded-xl bg-white">
         <div class="flex items-center justify-between gap-2">
             <div class="font-medium">
                 {{ optional($rv->user)->name ?: 'Ẩn danh' }}
@@ -51,8 +51,8 @@ $q->orWhere('user_id', $viewerId);
     </div>
     @empty
     <div class="py-10 text-center text-ink/60">
-        <div class="mx-auto w-10 h-10 rounded-full bg-rose-50 flex items-center justify-center mb-2">
-            <i class="fa-regular fa-comment-dots text-rose-500"></i>
+        <div class="mx-auto w-10 h-10 rounded-full bg-pink-50 flex items-center justify-center mb-2">
+            <i class="fa-regular fa-comment-dots text-pink-500"></i>
         </div>
         Chưa có đánh giá nào.
     </div>

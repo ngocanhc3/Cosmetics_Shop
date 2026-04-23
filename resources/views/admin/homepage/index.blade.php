@@ -63,7 +63,7 @@
     </div>
 
     <div>
-        <button class="px-5 py-2 rounded bg-rose-600 text-white">Lưu trang chủ</button>
+        <button class="px-5 py-2 rounded bg-pink-600 text-white">Lưu trang chủ</button>
     </div>
 </form>
 

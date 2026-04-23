@@ -11,7 +11,7 @@
 
     {{-- Panel --}}
     <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-card
-              border-l border-rose-100 flex flex-col"
+              border-l border-pink-100 flex flex-col"
         x-transition:enter="transition transform ease-out duration-200"
         x-transition:enter-start="translate-x-full"
         x-transition:enter-end="translate-x-0"
@@ -20,7 +20,7 @@
         x-transition:leave-end="translate-x-full">
 
         {{-- Header --}}
-        <div class="px-4 py-3 border-b border-rose-100 flex items-center justify-between">
+        <div class="px-4 py-3 border-b border-pink-100 flex items-center justify-between">
             <div class="text-lg font-semibold">Giỏ hàng</div>
             <button class="text-ink/60 hover:text-ink" @click="$store.cart.open=false">
                 <i class="fa-solid fa-xmark"></i>
@@ -34,8 +34,8 @@
             </template>
 
             <template x-for="it in items" :key="it.key">
-                <div class="p-4 border-b border-rose-100 flex gap-3">
-                    <a :href="it.url" class="w-20 h-20 rounded-lg bg-rose-50/40 border border-rose-100 overflow-hidden grid place-items-center">
+                <div class="p-4 border-b border-pink-100 flex gap-3">
+                    <a :href="it.url" class="w-20 h-20 rounded-lg bg-pink-50/40 border border-pink-100 overflow-hidden grid place-items-center">
                         <img :src="it.img" class="max-h-20 object-contain" alt="">
                     </a>
                     <div class="flex-1 min-w-0">
@@ -44,14 +44,14 @@
 
                         <div class="mt-2 flex items-center justify-between">
                             <div>
-                                <div class="font-semibold text-rose-600" x-text="money(it.price)"></div>
+                                <div class="font-semibold text-pink-600" x-text="money(it.price)"></div>
                                 <div class="text-xs text-ink/50 line-through" x-show="it.compare" x-text="money(it.compare)"></div>
                             </div>
 
                             {{-- Stepper --}}
-                            <div class="flex items-center border border-rose-200 rounded-lg overflow-hidden">
+                            <div class="flex items-center border border-pink-200 rounded-lg overflow-hidden">
                                 <button class="w-8 h-8 grid place-items-center" @click="dec(it)">−</button>
-                                <input class="w-10 h-8 text-center border-x border-rose-100 outline-none"
+                                <input class="w-10 h-8 text-center border-x border-pink-100 outline-none"
                                     :value="it.qty"
                                     @input="onInputQty($event, it)">
                                 <button class="w-8 h-8 grid place-items-center" @click="inc(it)">+</button>
@@ -67,16 +67,16 @@
         </div>
 
         {{-- Footer --}}
-        <div class="border-t border-rose-100 p-4 space-y-3">
+        <div class="border-t border-pink-100 p-4 space-y-3">
             <div class="flex items-center justify-between">
                 <div class="text-sm text-ink/60">Tạm tính</div>
-                <div class="text-lg font-bold text-rose-600" x-text="money(subtotal)"></div>
+                <div class="text-lg font-bold text-pink-600" x-text="money(subtotal)"></div>
             </div>
             <div class="flex items-center gap-2">
                 <a href="{{ route('checkout.index') }}" class="flex-1 px-4 py-3 bg-brand-600 text-white rounded-xl text-center hover:bg-brand-700">
                     Thanh toán
                 </a>
-                <button class="px-4 py-3 border border-rose-200 rounded-xl hover:bg-rose-50"
+                <button class="px-4 py-3 border border-pink-200 rounded-xl hover:bg-pink-50"
                     @click="$store.cart.open=false">Mua tiếp</button>
             </div>
             <button class="w-full text-xs text-ink/60 hover:text-red-600" @click="clearAll()">Xóa toàn bộ</button>

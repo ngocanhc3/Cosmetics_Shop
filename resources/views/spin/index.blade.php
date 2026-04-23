@@ -80,7 +80,7 @@
 
 <div id="toastHost"></div>
 
-<div class="min-h-[70vh] bg-gradient-to-br from-rose-50 via-white to-pink-50">
+<div class="min-h-[70vh] bg-gradient-to-br from-pink-50 via-white to-pink-50">
     <div class="max-w-6xl mx-auto px-4 py-10">
         <div class="grid lg:grid-cols-5 gap-10">
             <div class="lg:col-span-3">
@@ -125,7 +125,7 @@
 
                     <div id="couponBox" class="hidden mt-4">
                         <div class="flex items-center gap-2">
-                            <code id="couponCode" class="px-3 py-2 bg-rose-50 text-rose-700 rounded border border-rose-200 font-semibold"></code>
+                            <code id="couponCode" class="px-3 py-2 bg-pink-50 text-pink-700 rounded border border-pink-200 font-semibold"></code>
                             <button id="copyBtn" class="px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm">Copy</button>
                             <button id="saveBtn" class="px-3 py-2 rounded-lg btn-primary text-sm">Lưu mã</button>
                         </div>

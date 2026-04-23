@@ -3,17 +3,17 @@
     @keydown.escape.window="$store.qv.open=false" @click.self="$store.qv.open=false">
 
     <div x-show="$store.qv.open" x-transition
-        class="absolute inset-0 m-auto w-full max-w-3xl bg-white rounded-2xl shadow-card border border-rose-100 p-4 md:p-5">
+        class="absolute inset-0 m-auto w-full max-w-3xl bg-white rounded-2xl shadow-card border border-pink-100 p-4 md:p-5">
         <div class="flex items-center justify-between mb-3">
             <h3 class="text-lg font-bold" x-text="$store.qv.data.name || 'Xem nhanh'"></h3>
-            <button class="w-9 h-9 grid place-items-center rounded-full hover:bg-rose-50"
+            <button class="w-9 h-9 grid place-items-center rounded-full hover:bg-pink-50"
                 @click="$store.qv.open=false"><i class="fa-regular fa-xmark"></i></button>
         </div>
 
         <div class="grid md:grid-cols-12 gap-4">
             {{-- Ảnh --}}
             <div class="md:col-span-5">
-                <div class="aspect-square rounded-xl overflow-hidden border border-rose-100 bg-white">
+                <div class="aspect-square rounded-xl overflow-hidden border border-pink-100 bg-white">
                     <img :src="$store.qv.data.image || 'https://placehold.co/800x800?text=IMG'"
                         class="w-full h-full object-cover" alt="">
                 </div>
@@ -29,7 +29,7 @@
                     <div class="mt-2 flex items-baseline gap-2">
                         <div class="text-2xl text-brand-600 font-semibold" x-text="$store.qv.data.price_fmt"></div>
                         <div class="text-sm line-through text-ink/50" x-text="$store.qv.data.compare_fmt"></div>
-                        <span class="text-xs px-2 py-1 rounded-full bg-rose-600 text-white" x-text="'-'+$store.qv.data.sale+'%'"></span>
+                        <span class="text-xs px-2 py-1 rounded-full bg-pink-600 text-white" x-text="'-'+$store.qv.data.sale+'%'"></span>
                     </div>
                 </template>
                 <template x-if="!$store.qv.data.sale">
@@ -44,7 +44,7 @@
                             <template x-for="v in $store.qv.data.variants" :key="v.id">
                                 <label class="cursor-pointer">
                                     <input type="radio" name="qv_variant" class="peer sr-only" :value="v.id" :checked="v._first">
-                                    <span class="inline-flex items-center px-3 py-1.5 rounded-full border border-rose-200 bg-white text-sm
+                                    <span class="inline-flex items-center px-3 py-1.5 rounded-full border border-pink-200 bg-white text-sm
                                peer-checked:bg-brand-600 peer-checked:text-white"
                                         x-text="v.name + ' — ' + v.price_fmt"></span>
                                 </label>
@@ -69,7 +69,7 @@
                   ">
                         Thêm vào giỏ
                     </button>
-                    <a :href="$store.qv.data.url" class="px-4 py-3 border border-rose-200 rounded-xl hover:bg-rose-50">Xem chi tiết</a>
+                    <a :href="$store.qv.data.url" class="px-4 py-3 border border-pink-200 rounded-xl hover:bg-pink-50">Xem chi tiết</a>
                 </div>
 
                 {{-- Mô tả ngắn --}}

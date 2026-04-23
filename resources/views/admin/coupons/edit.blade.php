@@ -15,7 +15,7 @@
     <div class="card p-3">
         <div class="form-row">
             <div>
-                <label class="label">Mã giảm giá <span class="text-rose-600">*</span></label>
+                <label class="label">Mã giảm giá <span class="text-pink-600">*</span></label>
                 <input name="code" value="{{ old('code',$coupon->code) }}" class="form-control" required>
             </div>
 
@@ -41,7 +41,7 @@
             </div>
 
             <div>
-                <label class="label">Giá trị giảm <span class="text-rose-600">*</span></label>
+                <label class="label">Giá trị giảm <span class="text-pink-600">*</span></label>
                 {{-- để text + inputmode tránh lỗi dấu phẩy/chấm trên trình duyệt --}}
                 <input name="value" type="text" inputmode="decimal"
                     value="{{ old('value',$coupon->discount_value) }}" class="form-control" required>

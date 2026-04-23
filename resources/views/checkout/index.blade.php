@@ -181,7 +181,7 @@ $selCity = $selected?->city ?? $selected?->province ?? $selected?->province_name
         <div class="lg:col-span-8 space-y-6">
             {{-- Địa chỉ --}}
             @auth
-            <div class="bg-white border border-rose-100 rounded-2xl p-4">
+            <div class="bg-white border border-pink-100 rounded-2xl p-4">
                 <div class="text-base font-semibold mb-3">Địa chỉ nhận hàng</div>
                 @if($addresses->isEmpty())
                 <div class="text-sm text-ink/60">
@@ -208,7 +208,7 @@ $selCity = $selected?->city ?? $selected?->province ?? $selected?->province_name
                         data-city="{{ $city }}">
                         <input type="radio" name="address_id" value="{{ $a->id }}" {{ ($selected?->id===$a->id)?'checked':'' }}>
                         <div class="text-sm">
-                            <div class="font-medium text-rose-700">{{ $a->name }} • {{ $a->phone }}</div>
+                            <div class="font-medium text-pink-700">{{ $a->name }} • {{ $a->phone }}</div>
                             <div class="text-ink/70">
                                 {{ $line1 }}{{ $line2 ? ', '.$line2 : '' }},
                                 {{ $ward ? $ward.', ' : '' }}{{ $district }}, {{ $city }}
@@ -228,7 +228,7 @@ $selCity = $selected?->city ?? $selected?->province ?? $selected?->province_name
             @endauth
 
             {{-- Thông tin nhận hàng --}}
-            <div class="bg-white border border-rose-100 rounded-2xl p-4">
+            <div class="bg-white border border-pink-100 rounded-2xl p-4">
                 <div class="text-base font-semibold mb-3">Thông tin nhận hàng</div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
@@ -279,7 +279,7 @@ $selCity = $selected?->city ?? $selected?->province ?? $selected?->province_name
             </div>
 
             {{-- Phương thức thanh toán --}}
-            <div class="bg-white border border-rose-100 rounded-2xl p-4">
+            <div class="bg-white border border-pink-100 rounded-2xl p-4">
                 <div class="text-base font-semibold mb-3">Phương thức thanh toán</div>
                 <div class="space-y-2" id="payMethods">
                     @php
@@ -335,20 +335,20 @@ $selCity = $selected?->city ?? $selected?->province ?? $selected?->province_name
                 <div id="methodHint" class="mt-3 text-sm text-ink/70"></div>
 
                 <button id="btnPlace"
-                    class="mt-4 w-full px-4 py-3 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white font-medium flex items-center justify-center gap-2 shadow-lg">
+                    class="mt-4 w-full px-4 py-3 rounded-xl bg-gradient-to-r from-pink-600 to-pink-500 hover:from-pink-500 hover:to-pink-400 text-white font-medium flex items-center justify-center gap-2 shadow-lg">
                     <span>Đặt hàng</span>
                     <svg id="btnSpin" class="hidden animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" d="M4 12a8 8 0 018-8v4" stroke="currentColor" stroke-width="4"></path>
                     </svg>
                 </button>
-                <div id="placeMsg" class="text-sm text-rose-600 mt-2"></div>
+                <div id="placeMsg" class="text-sm text-pink-600 mt-2"></div>
             </div>
         </div>
 
         {{-- ====== ĐƠN HÀNG CỦA BẠN ====== --}}
         <div class="lg:col-span-4">
-            <div class="bg-white border border-rose-100 rounded-2xl p-4 space-y-4">
+            <div class="bg-white border border-pink-100 rounded-2xl p-4 space-y-4">
                 <div class="text-base font-semibold">Đơn hàng của bạn</div>
 
                 {{-- Items --}}
@@ -388,28 +388,28 @@ $selCity = $selected?->city ?? $selected?->province ?? $selected?->province_name
                     <div id="shipWrap" class="relative">
                         <div id="shipRow" class="flex gap-2 {{ $shipCode ? 'hidden' : '' }}">
                             <input id="shipInput"
-                                class="flex-1 px-3 py-2 rounded-md border border-rose-200 outline-none focus:ring-2 focus:ring-rose-300"
+                                class="flex-1 px-3 py-2 rounded-md border border-pink-200 outline-none focus:ring-2 focus:ring-pink-300"
                                 placeholder="Nhập mã vận chuyển">
                             <button id="btnShipApply"
-                                class="px-3 py-2 rounded-md bg-rose-600 text-white hover:bg-rose-500">Áp dụng</button>
+                                class="px-3 py-2 rounded-md bg-pink-600 text-white hover:bg-pink-500">Áp dụng</button>
                             <button id="btnShipMenu" type="button"
-                                class="px-3 py-2 rounded-md border border-rose-200 text-ink/70 hover:bg-rose-50"
+                                class="px-3 py-2 rounded-md border border-pink-200 text-ink/70 hover:bg-pink-50"
                                 title="Chọn mã của bạn">
                                 <i class="fa-solid fa-caret-down"></i>
                             </button>
                         </div>
 
                         <div id="shipMenu"
-                            class="hidden absolute z-30 mt-1 left-0 right-0 bg-white border border-rose-100 rounded-md shadow max-h-60 overflow-auto"></div>
+                            class="hidden absolute z-30 mt-1 left-0 right-0 bg-white border border-pink-100 rounded-md shadow max-h-60 overflow-auto"></div>
 
                         <div id="shipApplied" class="{{ $shipCode ? 'flex' : 'hidden' }} mt-2 items-center gap-2">
                             <span class="px-2 py-1 bg-emerald-50 text-emerald-700 rounded text-sm">
                                 Đã áp dụng: <span id="shipCode">{{ $shipCode }}</span>
                             </span>
-                            <button id="btnShipRemove" class="text-sm text-rose-600 hover:underline">Huỷ</button>
+                            <button id="btnShipRemove" class="text-sm text-pink-600 hover:underline">Huỷ</button>
                         </div>
 
-                        <div id="shipMsg" class="text-xs text-rose-600 mt-1">
+                        <div id="shipMsg" class="text-xs text-pink-600 mt-1">
                             {{-- message --}}
                         </div>
                     </div>
@@ -434,7 +434,7 @@ $selCity = $selected?->city ?? $selected?->province ?? $selected?->province_name
                         <span id="ckShipDiscount" data-val="{{ $shipDiscount }}">{{ number_format($shipDiscount,0,',','.') }}₫</span>
                     </div>
 
-                    <div class="border-t border-rose-100 pt-2 text-base font-semibold flex justify-between">
+                    <div class="border-t border-pink-100 pt-2 text-base font-semibold flex justify-between">
                         <span>Tổng</span>
                         <span id="ckGrand" data-val="{{ $grand }}">{{ number_format($grand,0,',','.') }}₫</span>
                     </div>
@@ -549,7 +549,7 @@ $selCity = $selected?->city ?? $selected?->province ?? $selected?->province_name
             elMenu.innerHTML = list.map(v => {
                 const disabled = v.usable === false;
                 return `
-          <button class="w-full text-left px-3 py-2 hover:bg-rose-50 ${disabled?'opacity-50 cursor-not-allowed':''}"
+          <button class="w-full text-left px-3 py-2 hover:bg-pink-50 ${disabled?'opacity-50 cursor-not-allowed':''}"
                   data-code="${v.code}" ${disabled?'disabled':''}>
             <div class="text-sm font-medium">${v.code} <span class="text-ink/60 font-normal">— ${v.discount_text||'Giảm phí ship'}</span></div>
             <div class="text-xs text-ink/60">
@@ -566,7 +566,7 @@ $selCity = $selected?->city ?? $selected?->province ?? $selected?->province_name
                 };
             });
         } catch (e) {
-            elMenu.innerHTML = '<div class="px-3 py-2 text-rose-600 text-sm">Không tải được mã vận chuyển.</div>';
+            elMenu.innerHTML = '<div class="px-3 py-2 text-pink-600 text-sm">Không tải được mã vận chuyển.</div>';
         }
     }
 

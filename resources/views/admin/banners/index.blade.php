@@ -75,7 +75,7 @@
                 </td>
                 <td class="text-sm">
                     {{ $b->starts_at?->format('d/m/Y H:i') ?? '—' }} → {{ $b->ends_at?->format('d/m/Y H:i') ?? '—' }}
-                    <div class="text-xs {{ $b->is_running_now ? 'text-emerald-600':'text-rose-600' }}">
+                    <div class="text-xs {{ $b->is_running_now ? 'text-emerald-600':'text-pink-600' }}">
                         {{ $b->is_running_now ? 'Đang hiển thị' : 'Không trong hiệu lực' }}
                     </div>
                 </td>

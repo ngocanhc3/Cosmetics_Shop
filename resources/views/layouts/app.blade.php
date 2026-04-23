@@ -76,6 +76,13 @@
             opacity: 1
         }
 
+        .site-panel {
+            background: rgba(255, 242, 247, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(251, 207, 211, 0.7);
+            box-shadow: 0 20px 50px rgba(244, 63, 94, 0.08);
+        }
+
         html,
         body {
             max-width: 100vw
@@ -121,7 +128,7 @@
     </script>
 </head>
 
-<body class="bg-rose-50/40 text-ink overflow-x-clip">
+<body class="bg-gradient-to-br from-pink-50 via-white to-pink-100 text-slate-900 overflow-x-clip min-h-screen">
     @php
     $headerCats = $headerCats ?? collect();
     $wishlistCount = (int)($wishlistCount ?? 0);
@@ -142,7 +149,7 @@
     </div>
 
     {{-- HEADER --}}
-    <header id="siteHeader" class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-rose-100 overflow-visible">
+    <header id="siteHeader" class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-pink-100 overflow-visible">
         <div class="max-w-7xl mx-auto px-4 py-3 grid grid-cols-12 gap-4 items-center">
             {{-- Logo --}}
             <a href="{{ route('home') }}" class="col-span-12 sm:col-span-2 flex items-center gap-2 font-bold text-xl">
@@ -152,9 +159,9 @@
 
             {{-- Search --}}
             <form class="col-span-12 sm:col-span-6 order-last sm:order-none" action="{{ route('shop.index') }}" method="get">
-                <div class="flex rounded-full border border-rose-200 bg-white overflow-hidden focus-within:ring-2 focus-within:ring-brand-400">
+                <div class="flex rounded-full border border-pink-200 bg-white overflow-hidden focus-within:ring-2 focus-within:ring-pink-400">
                     <input class="flex-1 px-4 py-2.5 outline-none text-sm" name="q" value="{{ request('q') }}" placeholder="Tìm sản phẩm, thương hiệu, vấn đề da…">
-                    <button class="px-4 bg-brand-500 text-white text-sm font-medium"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="px-4 bg-pink-500 text-white text-sm font-medium rounded-r-full"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
             </form>
 
@@ -172,106 +179,106 @@
                     @endphp
 
                     <button type="button" @click="open=!open"
-                        class="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-rose-50 border border-rose-200">
+                        class="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-pink-50 border border-pink-200">
                         @if($avatar)
                         <img src="{{ $avatar }}" class="w-8 h-8 rounded-full object-cover" alt="">
                         @else
-                        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-brand-500 text-white">
+                        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-pink-500 text-white">
                             {{ strtoupper(\Illuminate\Support\Str::substr($u->name ?? 'U',0,1)) }}
                         </span>
                         @endif
                         <span class="hidden md:block text-sm font-medium max-w-[150px] truncate">{{ $u->name }}</span>
-                        <i class="fa-solid fa-chevron-down text-xs text-ink/60"></i>
+                        <i class="fa-solid fa-chevron-down text-xs text-gray-600"></i>
                     </button>
 
                     <div x-show="open" x-transition.opacity x-cloak
                         @click.outside="open=false" @keydown.escape.window="open=false"
-                        class="absolute right-0 mt-2 w-[320px] max-h-[calc(100vh-5rem)] overflow-y-auto bg-white border border-rose-100 rounded-xl shadow-card py-2">
+                        class="absolute right-0 mt-2 w-[320px] max-h-[calc(100vh-5rem)] overflow-y-auto bg-white border border-pink-100 rounded-xl shadow-card py-2">
                         <div class="px-4 pb-2 text-sm">
-                            <div class="text-ink/60">Xin chào,</div>
-                            <div class="font-medium text-ink truncate">{{ $u->name }}</div>
-                            <div class="text-xs text-ink/50 truncate">{{ $u->email }}</div>
+                            <div class="text-slate-600">Xin chào,</div>
+                            <div class="font-medium text-gray-900 truncate">{{ $u->name }}</div>
+                            <div class="text-xs text-gray-500 truncate">{{ $u->email }}</div>
                         </div>
-                        <div class="my-2 border-t border-rose-100"></div>
+                        <div class="my-2 border-t border-pink-100"></div>
 
                         <div class="px-2 py-1">
                             {{-- Tổng quan --}}
                             <a href="{{ $link('account.dashboard', $link('account.orders.index')) }}"
-                                class="flex items-center gap-2 px-2 py-2 rounded hover:bg-rose-50">
+                                class="flex items-center gap-2 px-2 py-2 rounded hover:bg-pink-50">
                                 <i class="fa-regular fa-user"></i><span>Tổng quan tài khoản</span>
                             </a>
                             {{-- Đơn hàng --}}
                             <a href="{{ $link('account.orders.index') }}"
-                                class="flex items-center gap-2 px-2 py-2 rounded hover:bg-rose-50">
+                                class="flex items-center gap-2 px-2 py-2 rounded hover:bg-pink-50">
                                 <i class="fa-solid fa-receipt"></i><span>Đơn hàng của tôi</span>
                             </a>
                             {{-- Yêu thích --}}
                             <a href="{{ $link('account.wishlist') }}"
-                                class="flex items-center gap-2 px-2 py-2 rounded hover:bg-rose-50">
+                                class="flex items-center gap-2 px-2 py-2 rounded hover:bg-pink-50">
                                 <i class="fa-regular fa-heart"></i><span>Yêu thích</span>
                             </a>
                             {{-- Giỏ hàng --}}
                             <a href="{{ $link('cart.index', url('/cart')) }}"
-                                class="flex items-center gap-2 px-2 py-2 rounded hover:bg-rose-50">
+                                class="flex items-center gap-2 px-2 py-2 rounded hover:bg-pink-50">
                                 <i class="fa-solid fa-bag-shopping"></i><span>Giỏ hàng</span>
                             </a>
                         </div>
 
-                        <div class="my-2 border-t border-rose-100"></div>
+                        <div class="my-2 border-t border-pink-100"></div>
                         <div class="px-2 py-1">
-                            <a href="{{ $link('account.profile') }}" class="flex items-center gap-2 px-2 py-2 rounded hover:bg-rose-50">
+                            <a href="{{ $link('account.profile') }}" class="flex items-center gap-2 px-2 py-2 rounded hover:bg-pink-50">
                                 <i class="fa-regular fa-id-card"></i><span>Hồ sơ cá nhân</span>
                             </a>
-                            <a href="{{ $link('account.addresses.index') }}" class="flex items-center gap-2 px-2 py-2 rounded hover:bg-rose-50">
+                            <a href="{{ $link('account.addresses.index') }}" class="flex items-center gap-2 px-2 py-2 rounded hover:bg-pink-50">
                                 <i class="fa-regular fa-map"></i><span>Sổ địa chỉ</span>
                             </a>
-                            <a href="{{ $link('account.coupons') }}" class="flex items-center gap-2 px-2 py-2 rounded hover:bg-rose-50">
+                            <a href="{{ $link('account.coupons') }}" class="flex items-center gap-2 px-2 py-2 rounded hover:bg-pink-50">
                                 <i class="fa-solid fa-ticket"></i><span>Mã giảm giá</span>
                             </a>
 
                             <a href="{{ $link('account.shipvouchers.index', url('/account/ship-vouchers')) }}"
-                                class="flex items-center gap-2 px-2 py-2 rounded hover:bg-rose-50">
+                                class="flex items-center gap-2 px-2 py-2 rounded hover:bg-pink-50">
                                 <i class="fa-solid fa-truck-fast"></i><span>Mã vận chuyển</span>
                             </a>
 
-                            <a href="{{ $link('account.reviews') }}" class="flex items-center gap-2 px-2 py-2 rounded hover:bg-rose-50">
+                            <a href="{{ $link('account.reviews') }}" class="flex items-center gap-2 px-2 py-2 rounded hover:bg-pink-50">
                                 <i class="fa-regular fa-comment-dots"></i><span>Đánh giá của tôi</span>
                             </a>
                         </div>
 
 
-                        <div class="my-2 border-t border-rose-100"></div>
+                        <div class="my-2 border-t border-pink-100"></div>
                         <div class="px-2 py-1">
-                            <a href="{{ $link('account.security') }}" class="flex items-center gap-2 px-2 py-2 rounded hover:bg-rose-50">
+                            <a href="{{ $link('account.security') }}" class="flex items-center gap-2 px-2 py-2 rounded hover:bg-pink-50">
                                 <i class="fa-solid fa-shield-halved"></i><span>Bảo mật & đăng nhập</span>
                             </a>
-                            <div class="my-2 border-t border-rose-100"></div>
+                            <div class="my-2 border-t border-pink-100"></div>
                             <div class="px-2 py-1">
                                 {{-- Ưu đãi & tích điểm --}}
                                 <a href="{{ $link('spin.index', url('/spin')) }}"
-                                    class="flex items-center gap-2 px-2 py-2 rounded hover:bg-rose-50">
+                                    class="flex items-center gap-2 px-2 py-2 rounded hover:bg-pink-50">
                                     <i class="fa-solid fa-dice"></i><span>Vòng quay may mắn</span>
                                 </a>
                                 <a href="{{ $link('game.mystery', url('/game/mystery')) }}"
-                                    class="flex items-center gap-2 px-2 py-2 rounded hover:bg-rose-50">
+                                    class="flex items-center gap-2 px-2 py-2 rounded hover:bg-pink-50">
                                     <i class="fa-solid fa-gift"></i><span>Hộp quà bí ẩn</span>
                                 </a>
 
                                 <a href="{{ $link('account.points.index', url('/account/points')) }}"
-                                    class="flex items-center gap-2 px-2 py-2 rounded hover:bg-rose-50">
+                                    class="flex items-center gap-2 px-2 py-2 rounded hover:bg-pink-50">
                                     <i class="fa-solid fa-coins"></i><span>Xu tích điểm</span>
                                 </a>
 
                             </div>
                             @hasanyrole('super-admin|admin|staff')
                             <a href="{{ $link('admin.dashboard', '#') }}"
-                                class="flex items-center gap-2 px-2 py-2 rounded hover:bg-rose-50 text-rose-700 font-medium">
+                                class="flex items-center gap-2 px-2 py-2 rounded hover:bg-pink-50 text-pink-700 font-medium">
                                 <i class="fa-solid fa-gauge"></i><span>Vào trang Admin</span>
                             </a>
                             @endhasanyrole
 
                             <form method="POST" action="/logout">@csrf
-                                <button type="submit" class="w-full text-left flex items-center gap-2 px-2 py-2 rounded hover:bg-rose-50">
+                                <button type="submit" class="w-full text-left flex items-center gap-2 px-2 py-2 rounded hover:bg-pink-50">
                                     <i class="fa-solid fa-arrow-right-from-bracket"></i><span>Đăng xuất</span>
                                 </button>
                             </form>
@@ -280,23 +287,23 @@
                     @else
                     {{-- Guest --}}
                     <button type="button" @click="open=!open"
-                        class="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-rose-50 border border-rose-200">
+                        class="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-pink-50 border border-pink-200">
                         <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-brand-500 text-white"><i class="fa-regular fa-user"></i></span>
                         <span class="hidden md:block text-sm font-medium">Tài khoản</span>
                         <i class="fa-solid fa-chevron-down text-xs text-ink/60"></i>
                     </button>
                     <div x-show="open" x-transition.opacity x-cloak
                         @click.outside="open=false" @keydown.escape.window="open=false"
-                        class="absolute right-0 mt-2 w-64 bg-white border border-rose-100 rounded-xl shadow-card py-2">
-                        <a href="{{ route('login') }}" class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-rose-50">
+                        class="absolute right-0 mt-2 w-64 bg-white border border-pink-100 rounded-xl shadow-card py-2">
+                        <a href="{{ route('login') }}" class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-pink-50">
                             <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập
                         </a>
-                        <a href="{{ route('register') }}" class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-rose-50">
+                        <a href="{{ route('register') }}" class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-pink-50">
                             <i class="fa-regular fa-id-card"></i> Đăng ký
                         </a>
-                        <div class="my-2 border-t border-rose-100"></div>
+                        <div class="my-2 border-t border-pink-100"></div>
                         <a href="{{ $link('cart.index', url('/cart')) }}"
-                            class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-rose-50">
+                            class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-pink-50">
                             <i class="fa-solid fa-bag-shopping"></i> Giỏ hàng
                         </a>
                     </div>
@@ -324,7 +331,7 @@
         </div>
 
         {{-- NAV: Mega-menu (không tràn, giữ dropdown con) --}}
-        <nav class="border-t border-rose-100">
+        <nav class="border-t border-pink-100">
             <div class="max-w-7xl mx-auto px-4 flex items-center gap-4">
                 {{-- (Giữ) Nút “Danh mục” flyout nếu bạn đang dùng --}}
                 <div class="flex-shrink-0">
@@ -343,7 +350,7 @@
 
                 {{-- Nút 🔥 Sale cố định bên phải --}}
                 <a href="{{ route('shop.sale') }}"
-                    class="flex-shrink-0 py-3 text-rose-600 font-semibold whitespace-nowrap {{ request()->routeIs('shop.sale') ? 'underline' : '' }}">
+                    class="flex-shrink-0 py-3 text-pink-600 font-semibold whitespace-nowrap {{ request()->routeIs('shop.sale') ? 'underline' : '' }}">
                     🔥 Sale
                 </a>
             </div>
@@ -356,43 +363,43 @@
     <main>@yield('content')</main>
 
     {{-- FOOTER --}}
-    <footer class="mt-16 border-t border-rose-100 bg-white">
+    <footer class="mt-16 border-t border-pink-100 bg-gradient-to-br from-pink-50 via-white to-pink-100 text-ink">
         <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-2 sm:grid-cols-4 gap-8 text-sm">
-            <div>
-                <h4 class="font-semibold mb-3">Về Cosme House</h4>
+            <div class="site-panel rounded-3xl p-6">
+                <h4 class="font-semibold mb-3 text-ink">Về Cosme House</h4>
                 <ul class="space-y-2 text-ink/80">
                     <li><a href="#" class="hover:text-brand-600">Giới thiệu</a></li>
                     <li><a href="#" class="hover:text-brand-600">Chính sách bảo mật</a></li>
                     <li><a href="#" class="hover:text-brand-600">Điều khoản</a></li>
                 </ul>
             </div>
-            <div>
-                <h4 class="font-semibold mb-3">Hỗ trợ</h4>
+            <div class="site-panel rounded-3xl p-6">
+                <h4 class="font-semibold mb-3 text-ink">Hỗ trợ</h4>
                 <ul class="space-y-2 text-ink/80">
                     <li><a href="#" class="hover:text-brand-600">Chính sách giao hàng</a></li>
                     <li><a href="#" class="hover:text-brand-600">Đổi trả & hoàn tiền</a></li>
                     <li><a href="#" class="hover:text-brand-600">Hướng dẫn mua hàng</a></li>
                 </ul>
             </div>
-            <div>
-                <h4 class="font-semibold mb-3">Liên hệ</h4>
+            <div class="site-panel rounded-3xl p-6">
+                <h4 class="font-semibold mb-3 text-ink">Liên hệ</h4>
                 <p class="text-ink/80">Hotline: 1900 1234</p>
-                <p class="text-ink/80">Email: support@cosme.house</p>
+                <p class="text-ink/80">Email: nhom05@gmail.com</p>
                 <div class="flex gap-3 mt-3 text-lg">
                     <a href="#" class="hover:text-brand-600"><i class="fa-brands fa-facebook"></i></a>
                     <a href="#" class="hover:text-brand-600"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#" class="hover:text-brand-600"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
-            <div>
-                <h4 class="font-semibold mb-3">Đăng ký nhận tin</h4>
+            <div class="site-panel rounded-3xl p-6">
+                <h4 class="font-semibold mb-3 text-ink">Đăng ký nhận tin</h4>
                 <form class="flex gap-2">
-                    <input class="flex-1 px-3 py-2 border border-rose-200 rounded-md outline-none focus:ring-2 focus:ring-brand-400" placeholder="Email của bạn">
+                    <input class="flex-1 px-3 py-2 border border-pink-200 rounded-md outline-none focus:ring-2 focus:ring-brand-400" placeholder="Email của bạn">
                     <button class="px-3 py-2 bg-brand-600 text-white rounded-md">Đăng ký</button>
                 </form>
             </div>
         </div>
-        <div class="border-t border-rose-100 py-4 text-center text-xs text-ink/60">© {{ date('Y') }} Cosme House</div>
+        <div class="border-t border-pink-100 py-4 text-center text-xs text-ink/60">© {{ date('Y') }} Cosme House</div>
     </footer>
 
     {{-- Header shadow --}}
@@ -601,3 +608,5 @@
 </body>
 
 </html>
+
+

@@ -341,7 +341,7 @@
             if (diff <= 0) {
                 countdown.textContent = 'Hết thời gian chờ (' + ttlMin + ' phút).';
                 if (statusBox) {
-                    statusBox.className = 'mt-3 p-3 rounded-md border text-sm bg-rose-50 border-rose-200 text-rose-700';
+                    statusBox.className = 'mt-3 p-3 rounded-md border text-sm bg-pink-50 border-pink-200 text-pink-700';
                     statusBox.textContent = 'Hết thời gian chờ thanh toán. Vui lòng tạo lại đơn hoặc thử lại.';
                 }
                 return;

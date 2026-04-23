@@ -13,9 +13,9 @@ $inStock = request()->boolean('in_stock');
     <form method="get" class="space-y-3">
         <x-accordion title="Khoảng giá (₫)" :open="true">
             <div class="flex items-center gap-2">
-                <input type="number" name="min" value="{{ $minReq }}" class="w-full px-3 py-2 border border-rose-200 rounded-md" placeholder="Từ">
+                <input type="number" name="min" value="{{ $minReq }}" class="w-full px-3 py-2 border border-pink-200 rounded-md" placeholder="Từ">
                 <span class="text-ink/40">—</span>
-                <input type="number" name="max" value="{{ $maxReq }}" class="w-full px-3 py-2 border border-rose-200 rounded-md" placeholder="Đến">
+                <input type="number" name="max" value="{{ $maxReq }}" class="w-full px-3 py-2 border border-pink-200 rounded-md" placeholder="Đến">
             </div>
         </x-accordion>
 
@@ -31,7 +31,7 @@ $inStock = request()->boolean('in_stock');
         </x-accordion>
 
         <x-accordion title="Đánh giá">
-            <select name="rating" class="w-full px-3 py-2 border border-rose-200 rounded-md">
+            <select name="rating" class="w-full px-3 py-2 border border-pink-200 rounded-md">
                 <option value="">Bất kỳ</option>
                 <option value="4" @selected($ratingReq===4)>Từ 4★</option>
                 <option value="3" @selected($ratingReq===3)>Từ 3★</option>

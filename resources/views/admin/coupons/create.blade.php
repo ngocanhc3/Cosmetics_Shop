@@ -12,7 +12,7 @@
     <div class="card p-3">
         <div class="form-row">
             <div>
-                <label class="label">Mã giảm giá <span class="text-rose-600">*</span></label>
+                <label class="label">Mã giảm giá <span class="text-pink-600">*</span></label>
                 <input name="code" value="{{ old('code') }}" class="form-control" placeholder="VD: SUMMER20" required>
             </div>
             <div>
@@ -37,7 +37,7 @@
             </div>
 
             <div>
-                <label class="label">Giá trị giảm <span class="text-rose-600">*</span></label>
+                <label class="label">Giá trị giảm <span class="text-pink-600">*</span></label>
                 <input name="value" type="number" step="0.01" min="0" value="{{ old('value') }}" class="form-control" placeholder="VD: 20 (nếu %), hoặc 50000 (nếu cố định)" required>
             </div>
 

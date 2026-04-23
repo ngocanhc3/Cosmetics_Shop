@@ -22,10 +22,10 @@ if(request()->boolean('in_stock')) $chips->push(['key'=>'in_stock','val'=>1,'lab
     } else unset($params[$chip['key']]);
     $url = url()->current().'?'.http_build_query($params);
     @endphp
-    <a href="{{ $url }}" class="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-full border border-rose-200 text-sm">
+    <a href="{{ $url }}" class="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-full border border-pink-200 text-sm">
         {{ $chip['label'] }} <i class="fa-regular fa-xmark text-ink/50"></i>
     </a>
     @endforeach
-    <a href="{{ url()->current() }}" class="text-sm text-rose-600 hover:underline">Xoá tất cả</a>
+    <a href="{{ url()->current() }}" class="text-sm text-pink-600 hover:underline">Xoá tất cả</a>
 </div>
 @endif

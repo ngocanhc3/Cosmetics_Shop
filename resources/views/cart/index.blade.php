@@ -9,30 +9,30 @@
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {{-- Danh sách items --}}
         <div class="lg:col-span-8">
-            <div class="bg-white border border-rose-100 rounded-2xl overflow-hidden">
-                <div class="px-4 py-3 border-b border-rose-100 flex items-center gap-3">
-                    <input id="selAll" type="checkbox" class="w-4 h-4 rounded border-rose-300">
+            <div class="bg-white border border-pink-100 rounded-2xl overflow-hidden">
+                <div class="px-4 py-3 border-b border-pink-100 flex items-center gap-3">
+                    <input id="selAll" type="checkbox" class="w-4 h-4 rounded border-pink-300">
                     <label for="selAll" class="text-sm">Chọn tất cả</label>
-                    <button id="btnRemoveSelected" class="ml-auto text-sm text-rose-600 hover:underline hidden">Xoá mục đã chọn</button>
+                    <button id="btnRemoveSelected" class="ml-auto text-sm text-pink-600 hover:underline hidden">Xoá mục đã chọn</button>
                 </div>
-                <div id="cartList" class="divide-y divide-rose-100"></div>
+                <div id="cartList" class="divide-y divide-pink-100"></div>
             </div>
         </div>
 
         {{-- Tóm tắt + mã giảm --}}
         <div class="lg:col-span-4">
-            <div class="bg-white border border-rose-100 rounded-2xl p-4 space-y-4">
+            <div class="bg-white border border-pink-100 rounded-2xl p-4 space-y-4">
                 {{-- Mã giảm giá --}}
                 <div>
                     <div class="text-sm font-medium mb-2">Mã giảm giá</div>
 
                     <div id="couponWrap" class="relative">
                         <div id="couponRow" class="flex gap-2">
-                            <input id="couponInput" class="flex-1 px-3 py-2 rounded-md border border-rose-200 outline-none focus:ring-2 focus:ring-brand-300" placeholder="Nhập mã">
+                            <input id="couponInput" class="flex-1 px-3 py-2 rounded-md border border-pink-200 outline-none focus:ring-2 focus:ring-brand-300" placeholder="Nhập mã">
                             <button id="btnApply" class="px-3 py-2 bg-brand-600 text-white rounded-md">Áp dụng</button>
                             {{-- nút xổ danh sách mã đang có --}}
                             <button id="btnShowCoupons" type="button"
-                                class="px-3 py-2 rounded-md border border-rose-200 text-ink/70 hover:bg-rose-50"
+                                class="px-3 py-2 rounded-md border border-pink-200 text-ink/70 hover:bg-pink-50"
                                 title="Chọn mã của bạn">
                                 <i class="fa-solid fa-caret-down"></i>
                             </button>
@@ -40,7 +40,7 @@
 
                         {{-- menu dropdown --}}
                         <div id="couponMenu"
-                            class="hidden absolute z-30 mt-1 left-0 right-0 bg-white border border-rose-100 rounded-md shadow max-h-60 overflow-auto">
+                            class="hidden absolute z-30 mt-1 left-0 right-0 bg-white border border-pink-100 rounded-md shadow max-h-60 overflow-auto">
                             {{-- JS sẽ đổ item vào đây --}}
                         </div>
                     </div>
@@ -49,9 +49,9 @@
                         <span class="px-2 py-1 bg-emerald-50 text-emerald-700 rounded text-sm">
                             Đã áp dụng: <span id="cpCode" class="font-semibold"></span>
                         </span>
-                        <button id="btnRemoveCoupon" class="text-sm text-rose-600 hover:underline">Huỷ</button>
+                        <button id="btnRemoveCoupon" class="text-sm text-pink-600 hover:underline">Huỷ</button>
                     </div>
-                    <div id="cpMsg" class="text-xs text-rose-600 mt-1"></div>
+                    <div id="cpMsg" class="text-xs text-pink-600 mt-1"></div>
                 </div>
 
                 {{-- Tổng tiền --}}
@@ -59,7 +59,7 @@
                     <div class="flex justify-between"><span>Tạm tính</span><span id="subSel">0₫</span></div>
                     <div class="flex justify-between text-emerald-700"><span>Giảm mã</span><span id="cpDiscount">0₫</span></div>
                     <div class="flex justify-between text-ink/60"><span>Phí vận chuyển</span><span>Miễn phí 499k</span></div>
-                    <div class="border-t border-rose-100 pt-2 text-base font-semibold flex justify-between">
+                    <div class="border-t border-pink-100 pt-2 text-base font-semibold flex justify-between">
                         <span>Tổng</span><span id="grandTotal">0₫</span>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
             const disabled = !it.usable;
             return `
         <button type="button"
-            class="w-full text-left px-3 py-2 ${disabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-rose-50'}"
+            class="w-full text-left px-3 py-2 ${disabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-pink-50'}"
             ${disabled ? 'disabled' : ''} data-code="${it.code}">
             <div class="flex items-start justify-between gap-2">
                 <div class="min-w-0">
@@ -117,7 +117,7 @@
                     <div class="text-xs text-ink/60 truncate">
                         ${it.label}${it.min ? ` • ĐH tối thiểu ${fmt(it.min)}` : ''}${it.expires ? ` • HSD ${it.expires}` : ''}
                     </div>
-                    ${it.reason ? `<div class="text-xs text-rose-600 mt-0.5">${it.reason}</div>` : ''}
+                    ${it.reason ? `<div class="text-xs text-pink-600 mt-0.5">${it.reason}</div>` : ''}
                 </div>
                 ${it.times > 1 ? `<span class="text-xs text-ink/50 shrink-0">x${it.times}</span>` : ''}
             </div>
@@ -181,23 +181,23 @@
         const line = it.price * it.qty;
         return `
       <div class="p-4 flex items-center gap-3" data-key="${it.key}">
-        <input type="checkbox" class="w-4 h-4 rounded border-rose-300 item-check" ${state.selected.has(it.key) ? 'checked' : ''}>
+        <input type="checkbox" class="w-4 h-4 rounded border-pink-300 item-check" ${state.selected.has(it.key) ? 'checked' : ''}>
         <img src="${it.img}"
              onerror="this.src='https://placehold.co/80x80?text=IMG'"
-             class="w-16 h-16 object-contain bg-white rounded border border-rose-100"
+             class="w-16 h-16 object-contain bg-white rounded border border-pink-100"
              alt="">
         <div class="flex-1 min-w-0">
           <div class="font-medium line-clamp-1">${it.name}</div>
           ${it.variant_name ? `<div class="text-xs text-ink/60 mt-0.5">${it.variant_name}</div>` : ''}
-          <div class="mt-1 text-rose-600 font-semibold">${fmt(it.price)}</div>
+          <div class="mt-1 text-pink-600 font-semibold">${fmt(it.price)}</div>
         </div>
-        <div class="flex items-center rounded-lg border border-rose-200 overflow-hidden">
-          <button class="w-8 h-8 grid place-items-center text-ink/70 hover:bg-rose-50 btn-dec">−</button>
-          <input value="${it.qty}" inputmode="numeric" class="w-12 h-8 text-center outline-none border-x border-rose-100 qty-input">
-          <button class="w-8 h-8 grid place-items-center text-ink/70 hover:bg-rose-50 btn-inc">+</button>
+        <div class="flex items-center rounded-lg border border-pink-200 overflow-hidden">
+          <button class="w-8 h-8 grid place-items-center text-ink/70 hover:bg-pink-50 btn-dec">−</button>
+          <input value="${it.qty}" inputmode="numeric" class="w-12 h-8 text-center outline-none border-x border-pink-100 qty-input">
+          <button class="w-8 h-8 grid place-items-center text-ink/70 hover:bg-pink-50 btn-inc">+</button>
         </div>
         <div class="w-24 text-right font-semibold">${fmt(line)}</div>
-        <button class="w-8 h-8 text-rose-600 hover:bg-rose-50 rounded-md btn-del"><i class="fa-regular fa-trash-can"></i></button>
+        <button class="w-8 h-8 text-pink-600 hover:bg-pink-50 rounded-md btn-del"><i class="fa-regular fa-trash-can"></i></button>
       </div>
     `;
     }

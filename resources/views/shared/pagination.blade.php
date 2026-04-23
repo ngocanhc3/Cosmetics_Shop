@@ -3,13 +3,13 @@
     <ul class="inline-flex items-center gap-1 text-sm">
         {{-- Nút Previous --}}
         @if ($paginator->onFirstPage())
-        <li class="px-3 py-1.5 rounded-md text-ink/40 border border-rose-100 cursor-not-allowed">
+        <li class="px-3 py-1.5 rounded-md text-ink/40 border border-pink-100 cursor-not-allowed">
             <i class="fa-solid fa-angle-left"></i>
         </li>
         @else
         <li>
             <a href="{{ $paginator->previousPageUrl() }}" rel="prev"
-                class="px-3 py-1.5 rounded-md border border-rose-200 hover:bg-rose-50">
+                class="px-3 py-1.5 rounded-md border border-pink-200 hover:bg-pink-50">
                 <i class="fa-solid fa-angle-left"></i>
             </a>
         </li>
@@ -28,7 +28,7 @@
         @else
         <li>
             <a href="{{ $url }}"
-                class="px-3 py-1.5 rounded-md border border-rose-200 hover:bg-rose-50">{{ $page }}</a>
+                class="px-3 py-1.5 rounded-md border border-pink-200 hover:bg-pink-50">{{ $page }}</a>
         </li>
         @endif
         @endforeach
@@ -39,12 +39,12 @@
         @if ($paginator->hasMorePages())
         <li>
             <a href="{{ $paginator->nextPageUrl() }}" rel="next"
-                class="px-3 py-1.5 rounded-md border border-rose-200 hover:bg-rose-50">
+                class="px-3 py-1.5 rounded-md border border-pink-200 hover:bg-pink-50">
                 <i class="fa-solid fa-angle-right"></i>
             </a>
         </li>
         @else
-        <li class="px-3 py-1.5 rounded-md text-ink/40 border border-rose-100 cursor-not-allowed">
+        <li class="px-3 py-1.5 rounded-md text-ink/40 border border-pink-100 cursor-not-allowed">
             <i class="fa-solid fa-angle-right"></i>
         </li>
         @endif

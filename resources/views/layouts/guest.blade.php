@@ -14,16 +14,16 @@
                 extend: {
                     colors: {
                         brand: {
-                            50: '#fff1f5',
-                            100: '#ffe4e9',
-                            200: '#fecdd3',
-                            300: '#fda4af',
-                            400: '#fb7185',
-                            500: '#f43f5e',
-                            600: '#e11d48',
-                            700: '#be123c',
-                            800: '#9f1239',
-                            900: '#881337'
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a'
                         },
                         ink: {
                             DEFAULT: '#111827',
@@ -46,7 +46,7 @@
     @stack('styles')
 </head>
 
-<body class="bg-rose-50/40 text-ink min-h-dvh flex flex-col">
+<body class="bg-sky-50/40 text-ink min-h-dvh flex flex-col">
     {{-- Top notice (giống app, có thể ẩn nếu không cần) --}}
     <div class="w-full bg-ink text-white text-sm">
         <div class="max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto px-4 py-2 flex items-center justify-between">
@@ -58,17 +58,17 @@
     </div>
 
     {{-- HEADER rút gọn --}}
-    <header class="bg-white/90 backdrop-blur border-b border-rose-100 shadow-header">
+    <header class="bg-white/90 backdrop-blur border-b border-sky-100 shadow-header">
         <div class="max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
             <a href="{{ route('home') }}" class="flex items-center gap-2 font-bold text-xl">
-                <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-500 text-white">C</span>
+                <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-sky-500 text-white">C</span>
                 <span class="hidden sm:block">Cosme House</span>
             </a>
 
             {{-- Link nhanh sang trang chủ / shop --}}
             <div class="flex items-center gap-3 text-sm">
-                <a href="{{ route('home') }}" class="hover:text-brand-600 hidden sm:inline">Trang chủ</a>
-                <a href="{{ route('shop.index') }}" class="hover:text-brand-600">Cửa hàng</a>
+                <a href="{{ route('home') }}" class="hover:text-sky-600 hidden sm:inline">Trang chủ</a>
+                <a href="{{ route('shop.index') }}" class="hover:text-sky-600">Cửa hàng</a>
             </div>
         </div>
     </header>
@@ -77,7 +77,7 @@
     <main class="flex-1">
         <div class="max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto px-4 py-10">
             {{-- Card trung tâm để form đăng nhập/đăng ký --}}
-            <div class="bg-white border border-rose-100 rounded-2xl shadow-card p-6 sm:p-8">
+            <div class="bg-white border border-sky-100 rounded-2xl shadow-card p-6 sm:p-8">
                 {{-- Tiêu đề trang con (nếu có) --}}
                 @hasSection('heading')
                 <h1 class="text-xl font-semibold mb-1">@yield('heading')</h1>
@@ -100,23 +100,23 @@
     </main>
 
     {{-- FOOTER gọn --}}
-    <footer class="mt-auto border-t border-rose-100 bg-white">
+    <footer class="mt-auto border-t border-sky-100 bg-white">
         <div class="max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto px-4 py-8 grid grid-cols-2 gap-6 text-xs sm:text-sm">
             <div>
                 <h4 class="font-semibold mb-2">Về Cosme House</h4>
                 <ul class="space-y-1 sm:space-y-2 text-ink/80">
-                    <li><a href="#" class="hover:text-brand-600">Giới thiệu</a></li>
-                    <li><a href="#" class="hover:text-brand-600">Chính sách bảo mật</a></li>
-                    <li><a href="#" class="hover:text-brand-600">Điều khoản</a></li>
+                    <li><a href="#" class="hover:text-sky-600">Giới thiệu</a></li>
+                    <li><a href="#" class="hover:text-sky-600">Chính sách bảo mật</a></li>
+                    <li><a href="#" class="hover:text-sky-600">Điều khoản</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="font-semibold mb-2">Liên hệ</h4>
+                <h4 class="font-semibold mb-2"></h4>
                 <p class="text-ink/80">Hotline: 1900 1234</p>
-                <p class="text-ink/80">Email: support@cosme.house</p>
+                <p class="text-ink/80">Email: nhom05@gmail.com </p>
             </div>
         </div>
-        <div class="border-t border-rose-100 py-3 text-center text-xs text-ink/60">
+        <div class="border-t border-sky-100 py-3 text-center text-xs text-ink/60">
             © {{ date('Y') }} Cosme House
         </div>
     </footer>
@@ -125,3 +125,4 @@
 </body>
 
 </html>
+

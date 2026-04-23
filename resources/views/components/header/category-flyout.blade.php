@@ -11,7 +11,7 @@ $parents = $headerCats ?? collect();
     <button type="button"
         @mouseenter="open()"
         @click="toggle()"
-        class="flex items-center gap-2 py-3 px-3 rounded-lg hover:bg-rose-50">
+        class="flex items-center gap-2 py-3 px-3 rounded-lg hover:bg-pink-50">
         <i class="fa-solid fa-bars-staggered"></i>
         <span class="font-medium">Danh mục</span>
         <i class="fa-solid fa-chevron-down text-xs text-ink/60"></i>
@@ -22,16 +22,16 @@ $parents = $headerCats ?? collect();
         x-transition.opacity
         @mouseleave="close()"
         @keydown.escape.window="close()"
-        class="absolute left-0 top-full mt-2 w-[720px] bg-white border border-rose-100 rounded-2xl shadow-card overflow-hidden z-[300]"
+        class="absolute left-0 top-full mt-2 w-[720px] bg-white border border-pink-100 rounded-2xl shadow-card overflow-hidden z-[300]"
         x-cloak>
         <div class="grid grid-cols-12">
             <!-- Cột trái: danh mục cha -->
-            <div class="col-span-5 max-h-[360px] overflow-auto bg-rose-50/40">
+            <div class="col-span-5 max-h-[360px] overflow-auto bg-pink-50/40">
                 @foreach($parents as $idx => $p)
                 <button type="button"
                     @mouseenter="active={{ $idx }}"
                     :class="active==={{ $idx }} ? 'bg-white text-brand-700' : 'hover:bg-white/70'"
-                    class="w-full text-left px-4 py-3 border-b border-rose-100 flex items-center justify-between">
+                    class="w-full text-left px-4 py-3 border-b border-pink-100 flex items-center justify-between">
                     <span class="truncate">{{ $p->name }}</span>
                     <i class="fa-solid fa-chevron-right text-xs opacity-60"></i>
                 </button>
@@ -46,7 +46,7 @@ $parents = $headerCats ?? collect();
                     <div class="grid grid-cols-2 gap-2">
                         @foreach($p->children as $c)
                         <a href="{{ route('category.show', $c->slug) }}"
-                            class="px-3 py-2 rounded-lg border border-rose-100 hover:border-brand-500 hover:bg-rose-50/60">
+                            class="px-3 py-2 rounded-lg border border-pink-100 hover:border-brand-500 hover:bg-pink-50/60">
                             {{ $c->name }}
                         </a>
                         @endforeach

@@ -182,12 +182,12 @@ $maxRedeemVnd = $balance * 10; // 1 xu = 10đ
                             <label class="block text-sm text-gray-600 mb-1">Nhập số xu muốn đổi</label>
                             <div class="flex items-center gap-2">
                                 <input id="pointsInput" type="number" name="points" min="1" step="1" max="{{ $balance }}"
-                                    class="w-full rounded-xl border px-3 py-2 focus:ring-rose-500 focus:border-rose-500"
+                                    class="w-full rounded-xl border px-3 py-2 focus:ring-pink-500 focus:border-pink-500"
                                     placeholder="vd: 200">
                                 <button type="button" data-val="100" class="chip" aria-label="+100 xu">+100</button>
                             </div>
                             <input id="pointsRange" type="range" min="0" max="{{ $balance }}" value="0"
-                                class="mt-2 w-full accent-rose-500">
+                                class="mt-2 w-full accent-pink-500">
                             <div class="mt-1 text-xs text-gray-500">
                                 Sẽ tạo mã giảm: <b id="willDiscount">0đ</b> &nbsp;•&nbsp; Đơn tối thiểu: <b id="willMin">100.000đ</b>
                             </div>

@@ -71,8 +71,8 @@ $posters = [
                             <div class="absolute inset-x-0 bottom-0 p-6 sm:p-10">
                                 <div class="max-w-[720px]">
                                     <div class="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5
-                                                    text-[13px] font-semibold text-rose-700 shadow-sm ring-1 ring-black/5">
-                                        <span class="inline-block h-1.5 w-1.5 rounded-full bg-rose-600"></span>
+                                                    text-[13px] font-semibold text-pink-700 shadow-sm ring-1 ring-black/5">
+                                        <span class="inline-block h-1.5 w-1.5 rounded-full bg-pink-600"></span>
                                         Cosme House ưu đãi
                                     </div>
 
@@ -87,7 +87,7 @@ $posters = [
                                         <a href="{{ $p['href'] }}"
                                             class="inline-flex items-center gap-2 rounded-2xl px-5 py-2.5
                                                       font-semibold text-white
-                                                      bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700
+                                                      bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700
                                                       shadow ring-1 ring-white/10">
                                             {{ $p['cta'] }}
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
@@ -140,7 +140,7 @@ $posters = [
 
                 {{-- progress bar (auto-play) --}}
                 <div class="absolute left-0 right-0 bottom-0 h-[3px] bg-white/20">
-                    <div id="promoProgress" class="h-full w-0 bg-gradient-to-r from-rose-500 to-rose-600"></div>
+                    <div id="promoProgress" class="h-full w-0 bg-gradient-to-r from-pink-500 to-pink-600"></div>
                 </div>
             </div>
 
@@ -150,7 +150,7 @@ $posters = [
                     <input id="promoDontShow" type="checkbox" class="h-4 w-4 rounded border-slate-300">
                     Không hiện lại hôm nay
                 </label>
-                <a href="{{ route('shop.sale') }}" class="underline decoration-rose-500/60 underline-offset-4 hover:no-underline">
+                <a href="{{ route('shop.sale') }}" class="underline decoration-pink-500/60 underline-offset-4 hover:no-underline">
                     Xem tất cả ưu đãi
                 </a>
             </div>

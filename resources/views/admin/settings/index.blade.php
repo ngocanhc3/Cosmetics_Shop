@@ -32,7 +32,7 @@ $tab = request('tab') ?? (session('settings.tab') ?? 'general');
             <h1 class="text-lg font-semibold">Cài đặt hệ thống</h1>
             <p class="text-slate-500 text-sm">Quản lý cấu hình cửa hàng, SEO, thanh toán, đơn hàng, vận chuyển, email, chính sách và trang tĩnh.</p>
         </div>
-        <button class="px-4 py-2 rounded-lg bg-rose-600 text-white hover:bg-rose-700 shadow-sm">
+        <button class="px-4 py-2 rounded-lg bg-pink-600 text-white hover:bg-pink-700 shadow-sm">
             <i class="fa-solid fa-floppy-disk mr-2"></i> Lưu cài đặt
         </button>
     </div>
@@ -53,7 +53,7 @@ $tab = request('tab') ?? (session('settings.tab') ?? 'general');
                 ] as [$key,$label,$icon])
                 <a href="{{ route('admin.settings.index', ['tab'=>$key]) }}"
                     class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50
-                    {{ $tab===$key ? 'bg-rose-50 text-rose-700 ring-1 ring-rose-200' : 'text-slate-700' }}">
+                    {{ $tab===$key ? 'bg-pink-50 text-pink-700 ring-1 ring-pink-200' : 'text-slate-700' }}">
                     <i class="fa-solid {{$icon}} w-4 text-center"></i>
                     <span>{{ $label }}</span>
                 </a>

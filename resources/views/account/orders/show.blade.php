@@ -39,7 +39,7 @@ $statusLabel = array_values($displaySteps)[$currentIndex] ?? ucfirst($canon);
 $ended = in_array($canon, ['huy','hoan_tien'], true);
 $endedLabel = $canon==='huy' ? 'Đã huỷ' : ($canon==='hoan_tien' ? 'Đã hoàn tiền' : null);
 $endedPill = $canon==='huy'
-? 'bg-rose-50 text-rose-700 border border-rose-200'
+? 'bg-pink-50 text-pink-700 border border-pink-200'
 : 'bg-sky-50 text-sky-700 border border-sky-200';
 
 $mainPill = match ($canon) {
@@ -47,9 +47,9 @@ $mainPill = match ($canon) {
 'dang_giao' => 'bg-sky-50 text-sky-700 border border-sky-200',
 'dang_xu_ly' => 'bg-amber-50 text-amber-700 border border-amber-200',
 'da_xac_nhan' => 'bg-violet-50 text-violet-700 border border-violet-200',
-'huy' => 'bg-rose-50 text-rose-700 border border-rose-200',
+'huy' => 'bg-pink-50 text-pink-700 border border-pink-200',
 'hoan_tien' => 'bg-sky-50 text-sky-700 border border-sky-200',
-default => 'bg-rose-50/60 text-ink/70 border border-rose-200',
+default => 'bg-pink-50/60 text-ink/70 border border-pink-200',
 };
 
 $payStatus = Str::snake($order->payment_status ?? '');
@@ -60,8 +60,8 @@ default => Str::title(str_replace('_',' ',$payStatus ?: 'Chưa thanh toán')),
 $payPill = match ($payStatus) {
 'paid'=>'bg-emerald-50 text-emerald-700 border border-emerald-200',
 'refunded'=>'bg-sky-50 text-sky-700 border border-sky-200',
-'failed'=>'bg-rose-50 text-rose-700 border border-rose-200',
-default=>'bg-rose-50/60 text-ink/70 border border-rose-200',
+'failed'=>'bg-pink-50 text-pink-700 border border-pink-200',
+default=>'bg-pink-50/60 text-ink/70 border border-pink-200',
 };
 $methodMap = ['COD'=>'Thanh toán khi nhận hàng (COD)','VNPAY'=>'VNPay','MOMO'=>'Momo','VIETQR'=>'VietQR'];
 
@@ -91,7 +91,7 @@ $icons = [
         <div>
             <div class="flex items-center gap-3">
                 <h1 class="text-2xl font-semibold">Đơn #<span id="order-code">{{ $order->code }}</span></h1>
-                <button id="btn-copy" class="text-xs px-2 py-1 rounded-md border border-rose-200 hover:bg-rose-50">Sao chép</button>
+                <button id="btn-copy" class="text-xs px-2 py-1 rounded-md border border-pink-200 hover:bg-pink-50">Sao chép</button>
             </div>
             <div class="text-sm text-ink/60 mt-1">Đặt lúc {{ optional($order->created_at)->format('d/m/Y H:i') }}</div>
         </div>
@@ -104,7 +104,7 @@ $icons = [
             </div>
             @if($order->payment_status!=='paid' && Route::has('payment.vietqr.show') && ($order->payment_method ?? '')==='VIETQR')
             <a href="{{ route('payment.vietqr.show', $order) }}"
-                class="inline-flex items-center rounded-md bg-gradient-to-r from-rose-600 to-pink-600 text-white px-4 py-2 text-sm hover:from-rose-500 hover:to-pink-500">
+                class="inline-flex items-center rounded-md bg-gradient-to-r from-pink-600 to-pink-600 text-white px-4 py-2 text-sm hover:from-pink-500 hover:to-pink-500">
                 Tiếp tục thanh toán
             </a>
             @endif
@@ -112,13 +112,13 @@ $icons = [
     </div>
 
     {{-- Stepper WOW --}}
-    <div class="mt-6 bg-white border border-rose-100 rounded-2xl shadow-sm p-5">
+    <div class="mt-6 bg-white border border-pink-100 rounded-2xl shadow-sm p-5">
         <div class="flex items-center gap-4">
             @php $i=0; @endphp
             @foreach($displaySteps as $key => $label)
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full flex items-center justify-center
-                      {{ $i <= $currentIndex ? 'text-white shadow-md bg-gradient-to-br from-rose-600 to-pink-500' : 'text-rose-300 border border-rose-200 bg-white' }}">
+                      {{ $i <= $currentIndex ? 'text-white shadow-md bg-gradient-to-br from-pink-600 to-pink-500' : 'text-pink-300 border border-pink-200 bg-white' }}">
                     <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2">{!! '
                         <path d="'.$icons[$key].'" />' !!}
                     </svg>
@@ -126,7 +126,7 @@ $icons = [
                 <div class="text-xs font-medium {{ $i <= $currentIndex ? 'text-ink' : 'text-ink/40' }}">{{ $label }}</div>
             </div>
             @if(!$loop->last)
-            <div class="flex-1 h-1 rounded-full {{ $i < $currentIndex ? 'bg-gradient-to-r from-rose-500 to-pink-500' : 'bg-rose-100' }}"></div>
+            <div class="flex-1 h-1 rounded-full {{ $i < $currentIndex ? 'bg-gradient-to-r from-pink-500 to-pink-500' : 'bg-pink-100' }}"></div>
             @endif
             @php $i++; @endphp
             @endforeach
@@ -142,18 +142,18 @@ $icons = [
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
         {{-- Trái: Người nhận / Địa chỉ / Thanh toán --}}
         <div class="space-y-6">
-            <div class="bg-white border border-rose-100 rounded-2xl shadow-sm p-5">
+            <div class="bg-white border border-pink-100 rounded-2xl shadow-sm p-5">
                 <div class="text-sm font-semibold mb-2">Người nhận</div>
                 <div class="text-ink">{{ $receiverName ?: '—' }}</div>
                 <div class="text-ink/70 text-sm mt-1">{{ $receiverPhone ?: '—' }}</div>
             </div>
 
-            <div class="bg-white border border-rose-100 rounded-2xl shadow-sm p-5">
+            <div class="bg-white border border-pink-100 rounded-2xl shadow-sm p-5">
                 <div class="text-sm font-semibold mb-2">Địa chỉ giao hàng</div>
                 <div class="text-ink">{{ $fullAddress ?: '—' }}</div>
             </div>
 
-            <div class="bg-white border border-rose-100 rounded-2xl shadow-sm p-5 space-y-1">
+            <div class="bg-white border border-pink-100 rounded-2xl shadow-sm p-5 space-y-1">
                 <div class="text-sm font-semibold">Thanh toán</div>
                 <div class="text-sm">Phương thức:
                     <span class="font-medium">
@@ -168,9 +168,9 @@ $icons = [
 
         {{-- Phải: Sản phẩm + Tổng tiền --}}
         <div class="lg:col-span-2 space-y-6">
-            <div class="bg-white border border-rose-100 rounded-2xl shadow-sm overflow-hidden">
+            <div class="bg-white border border-pink-100 rounded-2xl shadow-sm overflow-hidden">
                 <table class="min-w-full text-sm">
-                    <thead class="bg-rose-50/60 text-ink/70">
+                    <thead class="bg-pink-50/60 text-ink/70">
                         <tr>
                             <th class="px-6 py-3 text-left font-medium">Sản phẩm</th>
                             <th class="px-6 py-3 text-center font-medium">SL</th>
@@ -179,7 +179,7 @@ $icons = [
                             <th class="px-6 py-3 text-right font-medium">Đánh giá</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-rose-100">
+                    <tbody class="divide-y divide-pink-100">
                         @foreach($order->items as $it)
                         @php
                         $variant = $it->variant;
@@ -222,9 +222,9 @@ $icons = [
                             <td class="px-6 py-3 text-right">
                                 @can('create', $it)
                                 <a href="{{ route('account.order-items.reviews.create', [$order, $it]) }}"
-                                    class="inline-flex items-center gap-1 px-3 py-1.5 rounded-md border border-rose-200 bg-white
+                                    class="inline-flex items-center gap-1 px-3 py-1.5 rounded-md border border-pink-200 bg-white
                               text-ink/80 hover:text-white hover:border-transparent
-                              hover:bg-gradient-to-r hover:from-rose-600 hover:to-pink-600
+                              hover:bg-gradient-to-r hover:from-pink-600 hover:to-pink-600
                               hover:shadow-md transition">
                                     <i class="fa-regular fa-star"></i> Đánh giá
                                 </a>
@@ -248,7 +248,7 @@ $icons = [
                 </table>
             </div>
 
-            <div class="bg-white border border-rose-100 rounded-2xl shadow-sm p-5">
+            <div class="bg-white border border-pink-100 rounded-2xl shadow-sm p-5">
                 <div class="grid grid-cols-2 gap-3 text-sm">
                     <div class="text-ink/70">Tạm tính</div>
                     <div class="text-right font-medium">
@@ -262,7 +262,7 @@ $icons = [
                     <div class="text-ink/70">Thuế</div>
                     <div class="text-right">₫{{ number_format($order->tax_total) }}</div>
                     @endif
-                    <div class="col-span-2 border-t border-rose-100 my-1"></div>
+                    <div class="col-span-2 border-t border-pink-100 my-1"></div>
                     <div class="text-ink font-semibold">Tổng cộng</div>
                     <div class="text-right text-lg font-semibold">₫{{ number_format($order->grand_total) }}</div>
                 </div>

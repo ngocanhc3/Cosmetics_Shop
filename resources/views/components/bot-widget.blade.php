@@ -8,7 +8,7 @@
     <button type="button"
         @pointerdown="startDrag($event,'bubble')"
         @click="onBubbleClick()"
-        class="relative w-16 h-16 rounded-full shadow-card bg-white border border-rose-100 grid place-items-center hover:shadow-lg transition"
+        class="relative w-16 h-16 rounded-full shadow-card bg-white border border-pink-100 grid place-items-center hover:shadow-lg transition"
         aria-label="Mở CosmeBot">
         <span class="pulse-ring"></span>
         <svg class="w-9 h-9 bob" viewBox="0 0 64 64" fill="none" aria-hidden="true">
@@ -27,12 +27,12 @@
         :class="panelSide==='right' ? 'origin-bottom-right right-0' : 'origin-bottom-left left-0'"
         :style="`width:${panel.w}px; height:${panel.h}px; top:${panelTop}px`">
 
-        <div class="bg-white border border-rose-100 rounded-2xl shadow-card overflow-hidden h-full flex flex-col">
+        <div class="bg-white border border-pink-100 rounded-2xl shadow-card overflow-hidden h-full flex flex-col">
 
             {{-- Header (drag handle) --}}
-            <div class="px-4 py-3 bg-rose-50/60 border-b border-rose-100 flex items-center gap-2 cursor-grab active:cursor-grabbing"
+            <div class="px-4 py-3 bg-pink-50/60 border-b border-pink-100 flex items-center gap-2 cursor-grab active:cursor-grabbing"
                 @pointerdown="startDrag($event,'header')" style="touch-action:none">
-                <div class="w-7 h-7 rounded-full grid place-items-center bg-white border border-rose-100">
+                <div class="w-7 h-7 rounded-full grid place-items-center bg-white border border-pink-100">
                     <svg class="w-5 h-5" viewBox="0 0 64 64" fill="none" aria-hidden="true">
                         <circle cx="32" cy="32" r="28" fill="#FFE8EE" stroke="#FF9DB1" stroke-width="2" />
                         <circle cx="24" cy="28" r="4" fill="#222" />
@@ -54,14 +54,14 @@
                     <div :class="m.role==='user' ? 'text-right' : 'text-left'">
                         <div :class="m.role==='user'
                 ? 'inline-block px-3 py-2 rounded-2xl bg-brand-600 text-white'
-                : 'inline-block px-3 py-2 rounded-2xl bg-rose-50/70 border border-rose-100'">
+                : 'inline-block px-3 py-2 rounded-2xl bg-pink-50/70 border border-pink-100'">
                             <span x-html="m.html"></span>
                         </div>
 
                         {{-- Chips --}}
                         <div class="mt-1 flex gap-2 flex-wrap" x-show="m.suggestions && m.suggestions.length">
                             <template x-for="s in m.suggestions" :key="s">
-                                <button class="px-2 py-1 text-xs rounded-full border border-rose-200 hover:bg-rose-50"
+                                <button class="px-2 py-1 text-xs rounded-full border border-pink-200 hover:bg-pink-50"
                                     @click="quick(s)" x-text="s"></button>
                             </template>
                         </div>
@@ -69,15 +69,15 @@
                         {{-- Product cards --}}
                         <div class="mt-2 grid grid-cols-2 gap-2" x-show="m.products && m.products.length">
                             <template x-for="p in m.products" :key="p.url">
-                                <a :href="p.url" class="border border-rose-100 rounded-xl overflow-hidden hover:shadow-card bg-white js-card">
+                                <a :href="p.url" class="border border-pink-100 rounded-xl overflow-hidden hover:shadow-card bg-white js-card">
                                     <span class="shine"></span>
                                     <img :src="p.img" class="w-full h-24 object-contain bg-white" alt="">
                                     <div class="p-2">
                                         <div class="line-clamp-2 text-[12px] font-medium" x-text="p.name"></div>
                                         <div class="mt-1">
-                                            <span class="text-[13px] font-bold text-rose-600" x-text="p.price"></span>
+                                            <span class="text-[13px] font-bold text-pink-600" x-text="p.price"></span>
                                             <span class="text-[11px] text-ink/50 line-through" x-show="p.compare" x-text="p.compare"></span>
-                                            <span class="ml-1 text-[11px] text-white bg-rose-600 px-1 rounded" x-show="p.discount" x-text="'-'+p.discount+'%'"></span>
+                                            <span class="ml-1 text-[11px] text-white bg-pink-600 px-1 rounded" x-show="p.discount" x-text="'-'+p.discount+'%'"></span>
                                         </div>
                                     </div>
                                 </a>
@@ -87,7 +87,7 @@
                 </template>
 
                 <div x-show="typing" class="text-left">
-                    <div class="inline-block px-3 py-2 rounded-2xl bg-rose-50/70 border border-rose-100">
+                    <div class="inline-block px-3 py-2 rounded-2xl bg-pink-50/70 border border-pink-100">
                         <span class="inline-block w-2 h-2 rounded-full bg-ink/50 animate-pulse mr-1"></span>
                         <span class="inline-block w-2 h-2 rounded-full bg-ink/50 animate-pulse mr-1"></span>
                         <span class="inline-block w-2 h-2 rounded-full bg-ink/50 animate-pulse"></span>
@@ -96,10 +96,10 @@
             </div>
 
             {{-- Input --}}
-            <form @submit.prevent="send()" class="p-3 border-t border-rose-100 flex items-center gap-2 bg-white">
+            <form @submit.prevent="send()" class="p-3 border-t border-pink-100 flex items-center gap-2 bg-white">
                 @csrf
                 <input type="text" x-model="input" placeholder="Hỏi CosmeBot điều gì cũng được nè…"
-                    class="flex-1 px-3 py-2 rounded-full border border-rose-200 outline-none focus:ring-2 focus:ring-brand-300">
+                    class="flex-1 px-3 py-2 rounded-full border border-pink-200 outline-none focus:ring-2 focus:ring-brand-300">
                 <button class="w-10 h-10 rounded-full bg-brand-600 text-white grid place-items-center">
                     <i class="fa-solid fa-paper-plane"></i>
                 </button>

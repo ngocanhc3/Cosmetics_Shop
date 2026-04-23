@@ -34,34 +34,34 @@ $consultPrompt = "Tư vấn cho sản phẩm: {$product->name}.\n"
 . "Hãy gợi ý công dụng, ai nên dùng/không nên dùng, cách sử dụng, và combo đi kèm.";
 @endphp
 
-<section class="max-w-7xl mx-auto px-4 mt-6">
+<section class="max-w-7xl mx-auto px-4 mt-6 bg-sky-50/80 rounded-[2rem] p-6 shadow-sm">
     {{-- breadcrumb --}}
     <div class="text-sm text-ink/60 mb-3">
-        <a href="{{ route('home') }}" class="hover:text-brand-600">Trang chủ</a> /
+        <a href="{{ route('home') }}" class="hover:text-sky-600">Trang chủ</a> /
         @if($product->category)
-        <a href="{{ route('category.show',$product->category->slug) }}" class="hover:text-brand-600">{{ $product->category->name }}</a> /
+        <a href="{{ route('category.show',$product->category->slug) }}" class="hover:text-sky-600">{{ $product->category->name }}</a> /
         @endif
         <span class="text-ink">{{ $product->name }}</span>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
         {{-- Gallery --}}
-        <div class="md:col-span-5" id="jsPdpGallery">
+        <div class="md:col-span-5 bg-white/95 border border-sky-100 rounded-3xl p-4 shadow-sm" id="jsPdpGallery">
             <x-product-gallery :images="$images" :main="$main" />
         </div>
 
         {{-- Summary --}}
         <div class="md:col-span-7">
-            <div class="md:sticky md:top-[92px] space-y-4">
+            <div class="md:sticky md:top-[92px] space-y-4 bg-white/95 border border-sky-100 rounded-3xl p-6 shadow-sm">
                 <h1 class="text-2xl font-bold">{{ $product->name }}</h1>
 
                 {{-- Brand + Category --}}
                 <div class="text-sm text-ink/60 flex items-center gap-2">
                     @if($product->brand)
-                    <a class="hover:text-brand-600" href="{{ route('brand.show',$product->brand->slug) }}">{{ $product->brand->name }}</a><span>•</span>
+                    <a class="hover:text-sky-600" href="{{ route('brand.show',$product->brand->slug) }}">{{ $product->brand->name }}</a><span>•</span>
                     @endif
                     @if($product->category)
-                    <a class="hover:text-brand-600" href="{{ route('category.show',$product->category->slug) }}">{{ $product->category->name }}</a>
+                    <a class="hover:text-sky-600" href="{{ route('category.show',$product->category->slug) }}">{{ $product->category->name }}</a>
                     @endif
                 </div>
 
@@ -77,8 +77,8 @@ $consultPrompt = "Tư vấn cho sản phẩm: {$product->name}.\n"
                         <label class="cursor-pointer">
                             <input type="radio" name="variant_id" class="peer sr-only"
                                 value="{{ $v->id }}" {{ $loop->first ? 'checked' : '' }}>
-                            <span class="inline-flex items-center px-3 py-1.5 rounded-full border border-rose-200 bg-white text-sm
-                                                 peer-checked:bg-brand-600 peer-checked:text-white">
+                            <span class="inline-flex items-center px-3 py-1.5 rounded-full border border-sky-200 bg-white text-sm
+                                                 peer-checked:bg-sky-600 peer-checked:text-white">
                                 {{ $v->name }} — {{ number_format($v->price) }}₫
                             </span>
                         </label>
@@ -90,24 +90,24 @@ $consultPrompt = "Tư vấn cho sản phẩm: {$product->name}.\n"
                 {{-- Qty + CTA --}}
                 <div class="flex items-center gap-3">
                     {{-- Stepper + / - --}}
-                    <div class="flex items-center rounded-xl border border-rose-200 overflow-hidden">
+                <div class="flex items-center rounded-xl border border-sky-200 overflow-hidden">
                         <button type="button" id="qtyDec"
-                            class="w-10 h-10 grid place-items-center text-xl text-ink/70 hover:bg-rose-50">−</button>
+                            class="w-10 h-10 grid place-items-center text-xl text-ink/70 hover:bg-sky-50">−</button>
                         <input id="qtyInput" name="qty" value="1" inputmode="numeric"
-                            class="h-10 w-14 text-center outline-none border-x border-rose-100"
+                            class="h-10 w-14 text-center outline-none border-x border-sky-100"
                             oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
                         <button type="button" id="qtyInc"
-                            class="w-10 h-10 grid place-items-center text-xl text-ink/70 hover:bg-rose-50">+</button>
+                            class="w-10 h-10 grid place-items-center text-xl text-ink/70 hover:bg-sky-50">+</button>
                     </div>
 
                     <button id="btnAddToCart"
                         data-product-id="{{ (int) $product->id }}"
-                        class="px-5 py-3 bg-brand-600 text-white rounded-xl hover:bg-brand-700">
+                        class="px-5 py-3 bg-sky-600 text-white rounded-xl hover:bg-brand-700">
                         Thêm vào giỏ
                     </button>
 
                     <button id="btnConsult"
-                        class="px-5 py-3 border border-rose-200 rounded-xl hover:bg-rose-50">
+                        class="px-5 py-3 border border-sky-200 rounded-xl hover:bg-sky-50">
                         Tư vấn
                     </button>
                 </div>
@@ -123,15 +123,15 @@ $consultPrompt = "Tư vấn cho sản phẩm: {$product->name}.\n"
     </div>
 
     {{-- Tabs: mô tả + đánh giá --}}
-    <div id="desc" class="mt-10 bg-white border border-rose-100 rounded-2xl p-4">
+    <div id="desc" class="mt-10 bg-white border border-sky-100 rounded-2xl p-4">
         <div x-data="{tab:'desc'}">
-            <div class="flex gap-4 border-b border-rose-100">
+            <div class="flex gap-4 border-b border-sky-100">
                 <button class="pb-3 font-medium"
-                    :class="tab==='desc' ? 'text-brand-600 border-b-2 border-brand-600' : 'text-ink/60'"
+                    :class="tab==='desc' ? 'text-sky-600 border-b-2 border-brand-600' : 'text-ink/60'"
                     @click="tab='desc'">Mô tả</button>
 
                 <button class="pb-3 font-medium"
-                    :class="tab==='reviews' ? 'text-brand-600 border-b-2 border-brand-600' : 'text-ink/60'"
+                    :class="tab==='reviews' ? 'text-sky-600 border-b-2 border-brand-600' : 'text-ink/60'"
                     @click="tab='reviews'">Đánh giá</button>
             </div>
 
@@ -155,7 +155,7 @@ $consultPrompt = "Tư vấn cho sản phẩm: {$product->name}.\n"
     <div class="mt-10">
         <div class="flex items-center justify-between mb-3">
             <h2 class="text-lg font-bold">Khách cũng mua</h2>
-            <a href="{{ route('shop.index') }}" class="text-sm text-brand-600 hover:underline">Xem thêm</a>
+            <a href="{{ route('shop.index') }}" class="text-sm text-sky-600 hover:underline">Xem thêm</a>
         </div>
         <x-related-carousel :products="$related" />
     </div>
@@ -324,3 +324,5 @@ $consultPrompt = "Tư vấn cho sản phẩm: {$product->name}.\n"
     });
 </script>
 @endsection
+
+

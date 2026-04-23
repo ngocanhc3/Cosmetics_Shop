@@ -10,35 +10,50 @@
         /* slate-900 */
         --muted: 100, 116, 139;
         /* slate-500 */
-        --border: 255, 228, 230;
-        /* rose-100 */
-        --ring: 251, 113, 133;
-        /* rose-400 */
-        --brand: 244, 63, 94;
-        /* rose-500 */
-        --brand2: 236, 72, 153;
-        /* pink-500 */
+        --border: 226, 232, 240;
+        /* slate-200 */
+        --ring: 248, 200, 220;
+        /* pink-200 */
+        --brand: 248, 200, 220;
+        /* pink-200 - hồng pastel */
+        --brand2: 253, 230, 240;
+        /* pink-100 */
         --sky: 14, 165, 233;
         /* sky-500 */
+        --emerald: 16, 185, 129;
+        /* emerald-500 */
     }
 
     .glass {
-        background: rgba(255, 255, 255, .88);
-        backdrop-filter: saturate(180%) blur(6px);
+        background: rgba(255, 255, 255, .95);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(var(--border), 0.8);
     }
 
     .card {
         border: 1px solid rgba(var(--border), 1);
-        background: #fff;
-        border-radius: 1rem;
-        box-shadow: 0 8px 24px rgba(var(--brand), .06);
+        background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.8) 100%);
+        border-radius: 1.5rem;
+        box-shadow: 0 10px 30px rgba(var(--brand), .08), 0 1px 8px rgba(0,0,0,.05);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 40px rgba(var(--brand), .12), 0 4px 12px rgba(0,0,0,.08);
     }
 
     .tile {
         border: 1px solid rgba(var(--border), 1);
-        border-radius: 1rem;
-        background-image: linear-gradient(180deg, rgba(var(--brand), .05), rgba(var(--brand2), .04));
+        border-radius: 1.5rem;
+        background: linear-gradient(135deg, rgba(var(--brand), .08) 0%, rgba(var(--brand2), .06) 100%);
         box-shadow: 0 8px 24px rgba(var(--brand), .06);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .tile:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 32px rgba(var(--brand), .1);
     }
 
     .chip {
@@ -50,6 +65,8 @@
         font-size: .75rem;
         font-weight: 600;
         border: 1px solid rgba(var(--border), 1);
+        background: rgba(255,255,255,0.8);
+        backdrop-filter: blur(4px);
     }
 
     .chip-dot {
@@ -57,23 +74,47 @@
         height: .5rem;
         border-radius: 999px;
         background: rgb(var(--brand));
+        box-shadow: 0 0 8px rgba(var(--brand), 0.4);
     }
 
     .soft-table thead th {
         color: rgba(var(--muted), 1);
         font-weight: 600;
+        background: rgba(var(--brand), 0.05);
+        border-bottom: 1px solid rgba(var(--border), 1);
     }
 
     .soft-table tbody tr {
-        border-top: 1px solid rgba(var(--border), 1);
+        border-bottom: 1px solid rgba(var(--border), 0.5);
+        transition: background-color 0.2s ease;
     }
 
     .soft-table tbody tr:hover {
-        background: rgba(255, 241, 242, .5);
+        background: linear-gradient(90deg, rgba(var(--brand), .02) 0%, rgba(var(--brand2), .04) 100%);
     }
 
     .kpi-number {
-        letter-spacing: -.01em
+        letter-spacing: -.01em;
+        background: linear-gradient(135deg, rgb(var(--brand)) 0%, rgb(var(--brand2)) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, rgb(var(--brand)) 0%, rgb(var(--brand2)) 100%);
+        border: none;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.75rem;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 12px rgba(var(--brand), 0.3);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(var(--brand), 0.4);
     }
 </style>
 
@@ -85,7 +126,7 @@
     </div>
     <div class="flex items-center gap-2">
         <input id="dateRange"
-            class="glass rounded-lg border border-rose-200/70 px-3 py-2 text-sm shadow-sm focus:outline-none"
+            class="glass rounded-lg border border-pink-200/70 px-3 py-2 text-sm shadow-sm focus:outline-none"
             placeholder="Chọn khoảng ngày" />
     </div>
 </div>
@@ -95,7 +136,7 @@
     <div class="tile p-4">
         <div class="flex items-center justify-between">
             <span class="text-sm text-slate-600">Doanh thu hôm nay</span>
-            <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-rose-100 text-rose-600">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-pink-100 text-pink-700">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <rect x="3" y="5" width="18" height="14" rx="2"></rect>
                     <path d="M7 9h10M7 13h6"></path>
@@ -108,7 +149,7 @@
     <div class="tile p-4">
         <div class="flex items-center justify-between">
             <span class="text-sm text-slate-600">Doanh thu tháng</span>
-            <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-pink-100 text-pink-600">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-pink-200 text-pink-700">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path d="M3 12h18"></path>
                     <path d="M3 6h18"></path>
@@ -122,7 +163,7 @@
     <div class="tile p-4">
         <div class="flex items-center justify-between">
             <span class="text-sm text-slate-600">Số đơn tháng</span>
-            <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-sky-100 text-sky-600">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-pink-300 text-pink-800">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path d="M3 7h18M5 7l1 12h12l1-12"></path>
                     <path d="M9 7V5a3 3 0 016 0v2"></path>
@@ -135,7 +176,7 @@
     <div class="tile p-4">
         <div class="flex items-center justify-between">
             <span class="text-sm text-slate-600">AOV (giá trị TB)</span>
-            <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-pink-400 text-pink-900">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path d="M3 12h18"></path>
                     <path d="M12 3v18"></path>
@@ -155,7 +196,7 @@
                 <div class="font-semibold">Doanh thu 14 ngày</div>
                 <div class="text-xs text-slate-500">Đã lọc các đơn đã thanh toán & hoàn tất</div>
             </div>
-            <span class="chip bg-rose-50 text-rose-700"><span class="chip-dot"></span> realtime</span>
+            <span class="chip bg-pink-50 text-pink-700"><span class="chip-dot"></span> realtime</span>
         </div>
         <div class="relative mt-4 h-[340px]">
             <canvas id="revChart" class="absolute inset-0 w-full h-full"></canvas>
@@ -229,7 +270,7 @@
                     <tr>
                         <td class="py-2">
                             <div class="flex items-center gap-3">
-                                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-50 text-rose-600 font-semibold">
+                                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-pink-50 text-pink-600 font-semibold">
                                     {{ mb_substr($displayName,0,1) }}
                                 </div>
                                 <div class="min-w-0">
@@ -272,7 +313,7 @@
                     <div class="font-medium">{{ $c->name }}</div>
                     <div class="text-slate-500">{{ number_format($c->total) }}₫</div>
                 </div>
-                <div class="mt-1 h-2 w-full overflow-hidden rounded-full bg-rose-50">
+                <div class="mt-1 h-2 w-full overflow-hidden rounded-full bg-pink-50">
                     <div class="h-2 rounded-full"
                         style="width: {{ $pct }}%; background: linear-gradient(90deg, rgb(var(--brand)) 0%, rgb(var(--brand2)) 100%);"></div>
                 </div>
@@ -309,7 +350,7 @@
                 <tr>
                     <td class="py-2">{{ $it->product_name }}</td>
                     <td class="text-slate-600">{{ $it->sku }}</td>
-                    <td class="text-right text-rose-600 font-medium">{{ $it->qty }}</td>
+                    <td class="text-right text-pink-600 font-medium">{{ $it->qty }}</td>
                     <td class="text-right text-slate-500">{{ $it->min_qty ?? '-' }}</td>
                 </tr>
                 @endforeach

@@ -99,7 +99,7 @@
                 <div>
                     <div class="text-slate-500">Sản phẩm</div>
                     @if($review->product)
-                    <a class="text-blue-600 hover:underline" href="{{ route('product.show',$review->product->slug) }}" target="_blank">
+                    <a class="text-pink-600 hover:underline" href="{{ route('product.show',$review->product->slug) }}" target="_blank">
                         {{ $review->product->name }}
                     </a>
                     @else

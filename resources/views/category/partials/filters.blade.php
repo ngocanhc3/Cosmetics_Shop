@@ -13,7 +13,7 @@ $inStock = request()->boolean('in_stock');
     clamp(){
       if(this.max && this.min && this.max < this.min){ const t = this.min; this.min=this.max; this.max=t; }
     }
-  }" class="bg-white border border-rose-100 rounded-2xl p-3">
+  }" class="bg-white border border-pink-100 rounded-2xl p-3">
 
     {{-- Chips: đang lọc --}}
     @php $active = collect(); @endphp
@@ -43,14 +43,14 @@ $inStock = request()->boolean('in_stock');
         }
         $clearUrl = url()->current().'?'.http_build_query($params);
         @endphp
-        <a href="{{ $clearUrl }}" class="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-full border border-rose-200 text-sm">
+        <a href="{{ $clearUrl }}" class="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-full border border-pink-200 text-sm">
             {{ $chip['label'] }}
             <i class="fa-regular fa-xmark text-ink/50"></i>
         </a>
         @endforeach
 
         {{-- Clear all --}}
-        <a href="{{ url()->current() }}" class="text-sm text-rose-600 hover:underline">Xoá tất cả</a>
+        <a href="{{ url()->current() }}" class="text-sm text-pink-600 hover:underline">Xoá tất cả</a>
     </div>
     @endif
 
@@ -60,10 +60,10 @@ $inStock = request()->boolean('in_stock');
             <label class="block text-sm font-medium mb-1">Khoảng giá (₫)</label>
             <div class="flex items-center gap-2">
                 <input type="number" x-model.number="min" @input="clamp()" name="min"
-                    class="w-full px-3 py-2 border border-rose-200 rounded-md" placeholder="Từ">
+                    class="w-full px-3 py-2 border border-pink-200 rounded-md" placeholder="Từ">
                 <span class="text-ink/40">—</span>
                 <input type="number" x-model.number="max" @input="clamp()" name="max"
-                    class="w-full px-3 py-2 border border-rose-200 rounded-md" placeholder="Đến">
+                    class="w-full px-3 py-2 border border-pink-200 rounded-md" placeholder="Đến">
             </div>
         </div>
 
@@ -72,7 +72,7 @@ $inStock = request()->boolean('in_stock');
             <label class="block text-sm font-medium mb-1">Thương hiệu</label>
             <div class="relative" x-data="{open:false}" @click.outside="open=false">
                 <button type="button" @click="open=!open"
-                    class="w-full px-3 py-2 border border-rose-200 rounded-md text-left flex items-center justify-between">
+                    class="w-full px-3 py-2 border border-pink-200 rounded-md text-left flex items-center justify-between">
                     <span class="truncate">
                         @if(count($selectedBrands))
                         {{ count($selectedBrands) }} thương hiệu đã chọn
@@ -82,9 +82,9 @@ $inStock = request()->boolean('in_stock');
                     </span>
                     <i class="fa-solid fa-chevron-down text-xs text-ink/60"></i>
                 </button>
-                <div x-show="open" x-transition class="absolute z-10 mt-1 w-full bg-white border border-rose-100 rounded-xl p-2 max-h-64 overflow-auto">
+                <div x-show="open" x-transition class="absolute z-10 mt-1 w-full bg-white border border-pink-100 rounded-xl p-2 max-h-64 overflow-auto">
                     @foreach(\App\Models\Brand::orderBy('name')->get(['id','name']) as $b)
-                    <label class="flex items-center gap-2 px-2 py-1 rounded hover:bg-rose-50">
+                    <label class="flex items-center gap-2 px-2 py-1 rounded hover:bg-pink-50">
                         <input type="checkbox" name="brand_ids[]" value="{{ $b->id }}" {{ in_array($b->id, $selectedBrands) ? 'checked' : '' }}>
                         <span class="text-sm">{{ $b->name }}</span>
                     </label>
@@ -96,7 +96,7 @@ $inStock = request()->boolean('in_stock');
         {{-- Rating --}}
         <div>
             <label class="block text-sm font-medium mb-1">Đánh giá</label>
-            <select name="rating" class="w-full px-3 py-2 border border-rose-200 rounded-md">
+            <select name="rating" class="w-full px-3 py-2 border border-pink-200 rounded-md">
                 <option value="">Bất kỳ</option>
                 <option value="4" @selected($ratingReq===4)>Từ 4★</option>
                 <option value="3" @selected($ratingReq===3)>Từ 3★</option>

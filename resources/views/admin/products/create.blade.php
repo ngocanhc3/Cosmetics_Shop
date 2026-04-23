@@ -125,7 +125,7 @@
             @endif
         </div>
 
-        @error('variants')<div class="text-rose-600 text-sm mt-2">{{ $message }}</div>@enderror
+        @error('variants')<div class="text-pink-600 text-sm mt-2">{{ $message }}</div>@enderror
     </div>
 
     <div class="flex items-center justify-end">

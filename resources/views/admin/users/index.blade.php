@@ -24,11 +24,11 @@
 <div class="card p-2 mb-3">
     <div class="flex flex-wrap gap-2">
         <a href="{{ route('admin.users.index', $qs) }}"
-            class="btn btn-ghost btn-sm {{ $cur===null || $cur==='' ? 'ring-1 ring-rose-200' : '' }}">Tất cả</a>
+            class="btn btn-ghost btn-sm {{ $cur===null || $cur==='' ? 'ring-1 ring-pink-200' : '' }}">Tất cả</a>
         <a href="{{ route('admin.users.index', array_merge($qs,['status'=>'active'])) }}"
-            class="btn btn-ghost btn-sm {{ $cur==='active' ? 'ring-1 ring-rose-200' : '' }}">Hoạt động</a>
+            class="btn btn-ghost btn-sm {{ $cur==='active' ? 'ring-1 ring-pink-200' : '' }}">Hoạt động</a>
         <a href="{{ route('admin.users.index', array_merge($qs,['status'=>'inactive'])) }}"
-            class="btn btn-ghost btn-sm {{ $cur==='inactive' ? 'ring-1 ring-rose-200' : '' }}">Khoá</a>
+            class="btn btn-ghost btn-sm {{ $cur==='inactive' ? 'ring-1 ring-pink-200' : '' }}">Khoá</a>
     </div>
 </div>
 
@@ -78,7 +78,7 @@
                 <td>{{ ($users->currentPage()-1)*$users->perPage() + $i + 1 }}</td>
                 <td>
                     <div class="flex items-center gap-2">
-                        <div class="w-8 h-8 rounded-full bg-rose-100 text-rose-700 grid place-content-center font-semibold">
+                        <div class="w-8 h-8 rounded-full bg-pink-100 text-pink-700 grid place-content-center font-semibold">
                             {{ strtoupper(Str::substr($u->name,0,1)) }}
                         </div>
                         <div>

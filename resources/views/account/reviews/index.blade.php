@@ -9,17 +9,17 @@
     <div class="p-3 rounded-xl border bg-emerald-50 text-emerald-700 border-emerald-200 mb-4">{{ session('success') }}</div>
     @endif
     @if($errors->any())
-    <div class="p-3 rounded-xl border bg-rose-50 text-rose-700 border-rose-200 mb-4">{{ $errors->first() }}</div>
+    <div class="p-3 rounded-xl border bg-pink-50 text-pink-700 border-pink-200 mb-4">{{ $errors->first() }}</div>
     @endif
 
     @if($reviews->isEmpty())
-    <div class="p-6 bg-rose-50/60 border border-rose-200 rounded-2xl text-center text-ink/60">
+    <div class="p-6 bg-pink-50/60 border border-pink-200 rounded-2xl text-center text-ink/60">
         Bạn chưa viết đánh giá nào.
     </div>
     @else
     <div class="space-y-4">
         @foreach($reviews as $rv)
-        <div class="p-4 bg-white border border-rose-100 rounded-2xl shadow-card">
+        <div class="p-4 bg-white border border-pink-100 rounded-2xl shadow-card">
             <div class="flex items-start gap-4">
                 @php
                 $thumb = optional($rv->product)->thumbnail;
@@ -71,7 +71,7 @@
 
                     <div class="mt-3 flex items-center gap-2">
                         <button
-                            class="px-3 py-1.5 rounded-lg border text-ink/80 hover:bg-rose-50 js-edit"
+                            class="px-3 py-1.5 rounded-lg border text-ink/80 hover:bg-pink-50 js-edit"
                             data-action="{{ route('account.reviews.update', $rv) }}"
                             data-rating="{{ (int)$rv->rating }}"
                             data-title="{{ e($rv->title) }}"
@@ -80,7 +80,7 @@
                         <form method="post" action="{{ route('account.reviews.destroy', $rv) }}"
                             onsubmit="return confirm('Xoá đánh giá này?')">
                             @csrf @method('DELETE')
-                            <button class="px-3 py-1.5 rounded-lg border border-rose-200 text-rose-700 hover:bg-rose-50">
+                            <button class="px-3 py-1.5 rounded-lg border border-pink-200 text-pink-700 hover:bg-pink-50">
                                 Xoá
                             </button>
                         </form>
@@ -129,18 +129,18 @@
 
             <div class="mb-3">
                 <label class="text-sm font-medium">Tiêu đề (tuỳ chọn)</label>
-                <input id="editTitle" name="title" class="mt-1 w-full border rounded-xl p-3 outline-none focus:ring-2 focus:ring-rose-400">
+                <input id="editTitle" name="title" class="mt-1 w-full border rounded-xl p-3 outline-none focus:ring-2 focus:ring-pink-400">
             </div>
 
             <div class="mb-3">
                 <label class="text-sm font-medium">Nội dung</label>
                 <textarea id="editContent" name="content" rows="6" required minlength="10" maxlength="2000"
-                    class="mt-1 w-full border rounded-xl p-3 outline-none focus:ring-2 focus:ring-rose-400"></textarea>
+                    class="mt-1 w-full border rounded-xl p-3 outline-none focus:ring-2 focus:ring-pink-400"></textarea>
             </div>
 
             <div class="flex items-center justify-end gap-2">
                 <button type="button" class="px-4 py-2 rounded-xl border" data-close>Huỷ</button>
-                <button class="px-5 py-2.5 rounded-xl text-white bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500">
+                <button class="px-5 py-2.5 rounded-xl text-white bg-gradient-to-r from-pink-600 to-pink-600 hover:from-pink-500 hover:to-pink-500">
                     Lưu thay đổi
                 </button>
             </div>

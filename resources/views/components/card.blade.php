@@ -3,9 +3,9 @@
 'subtitle' => null,
 ])
 
-<div {{ $attributes->class('bg-white rounded-xl border border-rose-100 shadow-sm overflow-hidden') }}>
+<div {{ $attributes->class('bg-white rounded-xl border border-pink-100 shadow-sm overflow-hidden') }}>
     @if(isset($header) || $title || $subtitle)
-    <div class="px-4 py-3 border-b border-rose-100 flex items-center justify-between">
+    <div class="px-4 py-3 border-b border-pink-100 flex items-center justify-between">
         <div>
             @if($title)
             <h3 class="font-semibold text-ink">{{ $title }}</h3>
@@ -24,7 +24,7 @@
     </div>
 
     @isset($footer)
-    <div class="px-4 py-3 border-t border-rose-100 bg-rose-50/30">
+    <div class="px-4 py-3 border-t border-pink-100 bg-pink-50/30">
         {{ $footer }}
     </div>
     @endisset

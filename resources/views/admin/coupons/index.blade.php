@@ -28,23 +28,23 @@ return '<span class="ml-1 text-xs rounded-full px-1.5 '.($active?'bg-white/20 te
 <div class="card p-2 mb-3">
     <div class="flex flex-wrap gap-2">
         <a href="{{ route('admin.coupons.index', $qs) }}"
-            class="btn btn-ghost btn-sm {{ ($cur===null || $cur==='') ? 'bg-rose-600 text-white hover:bg-rose-600' : '' }}">
+            class="btn btn-ghost btn-sm {{ ($cur===null || $cur==='') ? 'bg-pink-600 text-white hover:bg-pink-600' : '' }}">
             Tất cả {!! $badge($counts['all'] ?? 0, ($cur===null || $cur==='')) !!}
         </a>
         <a href="{{ route('admin.coupons.index', array_merge($qs,['status'=>'ongoing'])) }}"
-            class="btn btn-ghost btn-sm {{ $cur==='ongoing' ? 'bg-rose-600 text-white hover:bg-rose-600' : '' }}">
+            class="btn btn-ghost btn-sm {{ $cur==='ongoing' ? 'bg-pink-600 text-white hover:bg-pink-600' : '' }}">
             Đang diễn ra {!! $badge($counts['ongoing'] ?? 0, $cur==='ongoing') !!}
         </a>
         <a href="{{ route('admin.coupons.index', array_merge($qs,['status'=>'expired'])) }}"
-            class="btn btn-ghost btn-sm {{ $cur==='expired' ? 'bg-rose-600 text-white hover:bg-rose-600' : '' }}">
+            class="btn btn-ghost btn-sm {{ $cur==='expired' ? 'bg-pink-600 text-white hover:bg-pink-600' : '' }}">
             Hết hạn {!! $badge($counts['expired'] ?? 0, $cur==='expired') !!}
         </a>
         <a href="{{ route('admin.coupons.index', array_merge($qs,['status'=>'active'])) }}"
-            class="btn btn-ghost btn-sm {{ $cur==='active' ? 'bg-rose-600 text-white hover:bg-rose-600' : '' }}">
+            class="btn btn-ghost btn-sm {{ $cur==='active' ? 'bg-pink-600 text-white hover:bg-pink-600' : '' }}">
             Đang bật {!! $badge($counts['active'] ?? 0, $cur==='active') !!}
         </a>
         <a href="{{ route('admin.coupons.index', array_merge($qs,['status'=>'inactive'])) }}"
-            class="btn btn-ghost btn-sm {{ $cur==='inactive' ? 'bg-rose-600 text-white hover:bg-rose-600' : '' }}">
+            class="btn btn-ghost btn-sm {{ $cur==='inactive' ? 'bg-pink-600 text-white hover:bg-pink-600' : '' }}">
             Đang tắt {!! $badge($counts['inactive'] ?? 0, $cur==='inactive') !!}
         </a>
     </div>
@@ -183,7 +183,7 @@ return '<span class="ml-1 text-xs rounded-full px-1.5 '.($active?'bg-white/20 te
 <div id="deleteModal" class="modal hidden">
     <div class="modal-card p-5">
         <div class="flex items-start gap-3">
-            <div class="w-10 h-10 rounded-full bg-rose-50 text-rose-600 grid place-content-center">
+            <div class="w-10 h-10 rounded-full bg-pink-50 text-pink-600 grid place-content-center">
                 <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
             <div class="flex-1">

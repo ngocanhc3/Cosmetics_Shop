@@ -32,7 +32,7 @@ $currentRole = $roles->firstWhere('id', (int)request('role')) ?? $roles->first()
         <div class="bg-white border border-slate-200 rounded-xl overflow-hidden">
             <div class="px-4 py-3 border-b border-slate-200 flex items-center justify-between">
                 <h2 class="font-semibold">Vai trò</h2>
-                <button id="btnOpenCreateRole" class="text-sm px-3 py-1.5 rounded-md bg-rose-600 text-white hover:bg-rose-700">
+                <button id="btnOpenCreateRole" class="text-sm px-3 py-1.5 rounded-md bg-pink-600 text-white hover:bg-pink-700">
                     + Thêm
                 </button>
             </div>
@@ -42,9 +42,9 @@ $currentRole = $roles->firstWhere('id', (int)request('role')) ?? $roles->first()
                 <form action="{{ route('admin.roles.store') }}" method="POST" class="flex items-center gap-2">
                     @csrf
                     <input name="name" required placeholder="Tên vai trò (vd: staff)"
-                        class="flex-1 px-3 py-2 text-sm border border-slate-300 rounded-md outline-none focus:ring-2 focus:ring-rose-300">
+                        class="flex-1 px-3 py-2 text-sm border border-slate-300 rounded-md outline-none focus:ring-2 focus:ring-pink-300">
                     <button class="px-3 py-2 text-sm rounded-md border">Huỷ</button>
-                    <button class="px-3 py-2 text-sm rounded-md bg-rose-600 text-white hover:bg-rose-700">Tạo</button>
+                    <button class="px-3 py-2 text-sm rounded-md bg-pink-600 text-white hover:bg-pink-700">Tạo</button>
                 </form>
                 <div class="mt-2 text-xs text-slate-500">Gợi ý: <code>super-admin</code>, <code>admin</code>, <code>staff</code></div>
             </div>
@@ -60,9 +60,9 @@ $currentRole = $roles->firstWhere('id', (int)request('role')) ?? $roles->first()
                 <li class="hover:bg-slate-50">
                     <div class="flex items-center justify-between">
                         <a href="{{ route('admin.roles.index', ['role' => $r->id]) }}"
-                            class="block flex-1 px-4 py-3 {{ $isActive ? 'bg-rose-50/50 font-medium' : '' }}">
+                            class="block flex-1 px-4 py-3 {{ $isActive ? 'bg-pink-50/50 font-medium' : '' }}">
                             <div class="flex items-center gap-2">
-                                <span class="inline-flex items-center justify-center w-6 h-6 rounded bg-rose-100 text-rose-700 text-xs uppercase">
+                                <span class="inline-flex items-center justify-center w-6 h-6 rounded bg-pink-100 text-pink-700 text-xs uppercase">
                                     {{ strtoupper(substr($r->name,0,2)) }}
                                 </span>
                                 <div>
@@ -81,7 +81,7 @@ $currentRole = $roles->firstWhere('id', (int)request('role')) ?? $roles->first()
                             <form action="{{ route('admin.roles.destroy', $r) }}" method="POST"
                                 onsubmit="return confirm('Xoá vai trò {{ $r->name }}?')">
                                 @csrf @method('DELETE')
-                                <button class="p-2 text-slate-500 hover:text-rose-600"
+                                <button class="p-2 text-slate-500 hover:text-pink-600"
                                     {{ $isProtected ? 'disabled' : '' }}
                                     title="{{ $isProtected ? 'Vai trò hệ thống, không thể xoá' : 'Xoá vai trò' }}">
                                     <i class="fa-solid fa-trash-can"></i>
@@ -109,7 +109,7 @@ $currentRole = $roles->firstWhere('id', (int)request('role')) ?? $roles->first()
                     <h2 class="font-semibold">Quyền của vai trò</h2>
                     @if($currentRole)
                     <div class="text-sm text-slate-600">
-                        Đang chỉnh: <span class="font-medium text-rose-700">{{ $currentRole->name }}</span>
+                        Đang chỉnh: <span class="font-medium text-pink-700">{{ $currentRole->name }}</span>
                         @if(in_array($currentRole->name, ['super-admin']))
                         <span class="ml-2 text-xs px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
                             Super-admin: có toàn bộ quyền
@@ -144,7 +144,7 @@ $currentRole = $roles->firstWhere('id', (int)request('role')) ?? $roles->first()
                                 {{ $group === '' ? 'Khác' : str_replace('-', ' ', $group) }}
                             </div>
                             <div class="flex items-center gap-2 text-xs">
-                                <button type="button" class="text-rose-700 hover:underline group-check"
+                                <button type="button" class="text-pink-700 hover:underline group-check"
                                     data-action="check" data-target="grp-{{ \Illuminate\Support\Str::slug($group) }}">
                                     Chọn nhóm
                                 </button>
@@ -173,7 +173,7 @@ $currentRole = $roles->firstWhere('id', (int)request('role')) ?? $roles->first()
                 </div>
 
                 <div class="mt-4 flex items-center gap-3">
-                    <button class="px-4 py-2 rounded-md bg-rose-600 text-white hover:bg-rose-700">
+                    <button class="px-4 py-2 rounded-md bg-pink-600 text-white hover:bg-pink-700">
                         Lưu thay đổi
                     </button>
                     <a href="{{ route('admin.roles.index', ['role' => $currentRole->id]) }}"

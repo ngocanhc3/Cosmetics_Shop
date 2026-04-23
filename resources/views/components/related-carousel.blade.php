@@ -8,7 +8,7 @@
         </div>
         @empty
         @for($i=0;$i<10;$i++)
-            <div class="min-w-[180px] max-w-[180px] snap-start bg-white border border-rose-100 rounded-xl h-[280px]">
+            <div class="min-w-[180px] max-w-[180px] snap-start bg-white border border-pink-100 rounded-xl h-[280px]">
     </div>
     @endfor
     @endforelse

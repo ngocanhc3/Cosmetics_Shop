@@ -19,7 +19,7 @@
             @foreach(request()->except('sort') as $k=>$v)
             <input type="hidden" name="{{ $k }}" value="{{ $v }}">
             @endforeach
-            <select name="sort" class="form-control border border-rose-200 rounded-md px-2 py-1.5 text-sm"
+            <select name="sort" class="form-control border border-pink-200 rounded-md px-2 py-1.5 text-sm"
                 onchange="this.form.submit()">
                 <option value="">Mới nhất</option>
                 <option value="price_asc" @selected(request('sort')==='price_asc' )>Giá ↑</option>
@@ -32,15 +32,15 @@
     <div class="mt-3">
         <form method="get" class="grid grid-cols-2 md:grid-cols-4 gap-2">
             <input type="hidden" name="q" value="{{ $q }}">
-            <input type="number" name="min" value="{{ request('min') }}" class="form-control border border-rose-200 rounded-md px-3 py-2" placeholder="Giá từ">
-            <input type="number" name="max" value="{{ request('max') }}" class="form-control border border-rose-200 rounded-md px-3 py-2" placeholder="Giá đến">
-            <select name="brand_id" class="form-control border border-rose-200 rounded-md px-3 py-2">
+            <input type="number" name="min" value="{{ request('min') }}" class="form-control border border-pink-200 rounded-md px-3 py-2" placeholder="Giá từ">
+            <input type="number" name="max" value="{{ request('max') }}" class="form-control border border-pink-200 rounded-md px-3 py-2" placeholder="Giá đến">
+            <select name="brand_id" class="form-control border border-pink-200 rounded-md px-3 py-2">
                 <option value="">Thương hiệu</option>
                 @foreach(\App\Models\Brand::orderBy('name')->get(['id','name']) as $b)
                 <option value="{{ $b->id }}" @selected(request('brand_id')==$b->id)>{{ $b->name }}</option>
                 @endforeach
             </select>
-            <button class="btn btn-soft px-3 py-2 rounded-md border border-rose-200">Lọc</button>
+            <button class="btn btn-soft px-3 py-2 rounded-md border border-pink-200">Lọc</button>
         </form>
     </div>
 

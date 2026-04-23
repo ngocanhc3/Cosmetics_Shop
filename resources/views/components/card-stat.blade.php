@@ -1,7 +1,7 @@
 @props(['icon'=>'fa-solid fa-box','value'=>0,'label'=>''])
-<div class="p-4 rounded-xl border border-rose-100 bg-white">
+<div class="p-4 rounded-xl border border-pink-100 bg-white">
     <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-rose-50 grid place-items-center text-rose-600">
+        <div class="w-10 h-10 rounded-full bg-pink-50 grid place-items-center text-pink-600">
             <i class="{{ $icon }}"></i>
         </div>
         <div>

@@ -86,10 +86,10 @@
 
         {{-- Sidebar --}}
         <aside id="sidebar" class="relative bg-white border-r border-slate-200 p-4">
-            <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2 font-semibold text-lg mb-2">
-                <span class="w-8 h-8 rounded-lg bg-rose-600 text-white grid place-content-center">C</span>
+            <div class="flex items-center gap-2 font-semibold text-lg mb-2">
+                <a href="{{ route('home') }}" class="w-8 h-8 rounded-lg bg-pink-600 text-white grid place-content-center hover:bg-pink-700 transition-colors">C</a>
                 <span class="sidebar-label">Admin Cosme</span>
-            </a>
+            </div>
 
             <nav class="mt-4 space-y-1 text-sm" id="sideNav">
                 {{-- TỔNG QUAN --}}
@@ -126,7 +126,7 @@
 
                     {{-- badge số đánh giá chờ duyệt (nếu có) --}}
                     @if(($pendingReviewsCount ?? 0) > 0)
-                    <span class="ml-auto inline-flex items-center justify-center rounded-full bg-rose-600 text-white text-[11px] px-2 py-0.5">
+                    <span class="ml-auto inline-flex items-center justify-center rounded-full bg-pink-600 text-white text-[11px] px-2 py-0.5">
                         {{ $pendingReviewsCount }}
                     </span>
                     @endif
@@ -232,7 +232,7 @@
                     <div class="flex justify-center">
                         <button id="sidebarToggle" type="button"
                             class="btn-float w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200
-                                       grid place-content-center text-slate-700 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-300"
+                                       grid place-content-center text-slate-700 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-300"
                             aria-label="Thu gọn / Mở rộng sidebar" title="Thu gọn / Mở rộng">
                             <i id="sidebarToggleIcon" class="fa-solid fa-angle-left text-lg"></i>
                         </button>

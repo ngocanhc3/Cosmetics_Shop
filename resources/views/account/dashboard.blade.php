@@ -5,7 +5,7 @@
 <style>
     :root {
         --rose: #f43f5e;
-        /* rose-500 */
+        /* pink-500 */
         --pink: #ec4899;
         /* pink-500 */
         --violet: #8b5cf6;
@@ -214,7 +214,7 @@
     <div class="bg-white rounded-2xl glow-border p-4 mt-6 lift">
         <div class="flex items-center justify-between">
             <div class="font-semibold">Địa chỉ mặc định</div>
-            <a href="{{ route('account.addresses.index') }}" class="text-sm text-rose-600 hover:underline">Quản lý địa chỉ</a>
+            <a href="{{ route('account.addresses.index') }}" class="text-sm text-pink-600 hover:underline">Quản lý địa chỉ</a>
         </div>
         <div class="grid md:grid-cols-2 gap-4 mt-3">
             @if($shipping)
@@ -248,14 +248,14 @@
     <div class="bg-white rounded-2xl glow-border mt-6 lift">
         <div class="p-4 flex items-center justify-between">
             <div class="font-semibold">Đơn hàng gần đây</div>
-            <a href="{{ route('account.orders.index') }}" class="text-sm text-rose-600 hover:underline">Xem tất cả</a>
+            <a href="{{ route('account.orders.index') }}" class="text-sm text-pink-600 hover:underline">Xem tất cả</a>
         </div>
         @if($recentOrders->isEmpty())
         <div class="p-4 text-slate-500">Bạn chưa có đơn hàng nào.</div>
         @else
         <div class="divide-y">
             @foreach($recentOrders as $o)
-            <a href="{{ route('account.orders.show', $o->id) }}" class="flex items-center justify-between p-4 hover:bg-rose-50/50">
+            <a href="{{ route('account.orders.show', $o->id) }}" class="flex items-center justify-between p-4 hover:bg-pink-50/50">
                 <div>
                     <div class="font-medium">#{{ $o->code }}</div>
                     <div class="text-xs text-slate-500">{{ optional($o->created_at)->format('d/m/Y H:i') }}</div>

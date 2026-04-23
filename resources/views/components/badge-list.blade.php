@@ -10,7 +10,7 @@ $items = count($items) ? $items : $defaults;
 
 <ul class="grid sm:grid-cols-3 gap-2">
     @foreach($items as $it)
-    <li class="flex items-center gap-2 px-3 py-2 rounded-lg border border-rose-100 bg-rose-50/40">
+    <li class="flex items-center gap-2 px-3 py-2 rounded-lg border border-pink-100 bg-pink-50/40">
         <i class="{{ $it['icon'] }} text-brand-600"></i>
         <span class="text-sm">{{ $it['text'] }}</span>
     </li>

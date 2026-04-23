@@ -12,7 +12,7 @@ $imgMb = $mobile ? asset('storage/'.$mobile) : $img;
 @endphp
 
 <a {{ $url ? 'href='.$url : '' }}
-    class="block w-full overflow-hidden rounded-2xl border border-rose-100 bg-white">
+    class="block w-full overflow-hidden rounded-2xl border border-pink-100 bg-white">
     <picture>
         <source media="(max-width: 640px)" srcset="{{ $imgMb }}">
         <img src="{{ $img }}" alt="{{ $title }}" class="w-full object-cover {{ $ratio }}">

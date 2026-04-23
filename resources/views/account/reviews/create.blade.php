@@ -8,7 +8,7 @@
     <div class="p-3 rounded-xl border bg-emerald-50 text-emerald-700 border-emerald-200 mb-4">{{ session('ok') }}</div>
     @endif
     @if ($errors->any())
-    <div class="p-3 rounded-xl border bg-rose-50 text-rose-700 border-rose-200 mb-4">
+    <div class="p-3 rounded-xl border bg-pink-50 text-pink-700 border-pink-200 mb-4">
         <ul class="list-disc list-inside text-sm">
             @foreach ($errors->all() as $e)<li>{{ $e }}</li>@endforeach
         </ul>
@@ -23,8 +23,8 @@
     @endphp
 
     {{-- Header sản phẩm --}}
-    <div class="bg-rose-50/60 border border-rose-200 rounded-2xl p-4 md:p-5 flex gap-4 items-start shadow-card">
-        <img src="{{ $thumb ?: 'https://placehold.co/96' }}" class="w-20 h-20 md:w-24 md:h-24 object-contain bg-white border border-rose-100 rounded-xl shadow-sm" alt="">
+    <div class="bg-pink-50/60 border border-pink-200 rounded-2xl p-4 md:p-5 flex gap-4 items-start shadow-card">
+        <img src="{{ $thumb ?: 'https://placehold.co/96' }}" class="w-20 h-20 md:w-24 md:h-24 object-contain bg-white border border-pink-100 rounded-xl shadow-sm" alt="">
         <div class="flex-1">
             <div class="text-xs md:text-sm text-ink/60">Mã đơn: <b>{{ $order->code }}</b></div>
             <h1 class="text-lg md:text-xl font-semibold mt-0.5">{{ $product->name }}</h1>
@@ -67,13 +67,13 @@
         <div>
             <label class="text-sm font-medium">Tiêu đề (tuỳ chọn)</label>
             <input name="title" value="{{ old('title') }}"
-                class="mt-1 w-full border border-rose-200 bg-white rounded-xl p-3 outline-none focus:ring-2 focus:ring-rose-400 shadow-sm">
+                class="mt-1 w-full border border-pink-200 bg-white rounded-xl p-3 outline-none focus:ring-2 focus:ring-pink-400 shadow-sm">
         </div>
 
         <div>
             <label class="text-sm font-medium">Nội dung</label>
             <textarea id="review-content" name="content" rows="6" required minlength="10" maxlength="2000"
-                class="mt-1 w-full border border-rose-200 bg-white rounded-xl p-3 outline-none focus:ring-2 focus:ring-rose-400 shadow-sm"
+                class="mt-1 w-full border border-pink-200 bg-white rounded-xl p-3 outline-none focus:ring-2 focus:ring-pink-400 shadow-sm"
                 placeholder="Chia sẻ trải nghiệm sau khi mua & sử dụng...">{{ old('content') }}</textarea>
             <div class="flex justify-end mt-1 text-xs text-ink/50">
                 <span id="cc">0</span>/2000
@@ -81,12 +81,12 @@
         </div>
 
         <div class="flex items-center gap-3">
-            <button class="px-5 py-2.5 rounded-xl text-white bg-gradient-to-r from-rose-600 to-pink-600
-                     hover:shadow-lg hover:from-rose-500 hover:to-pink-500 transition">
+            <button class="px-5 py-2.5 rounded-xl text-white bg-gradient-to-r from-pink-600 to-pink-600
+                     hover:shadow-lg hover:from-pink-500 hover:to-pink-500 transition">
                 Gửi đánh giá
             </button>
             <a href="{{ route('account.orders.show', $order) }}"
-                class="px-4 py-2 rounded-xl border border-rose-200 text-ink/70 hover:bg-rose-50 transition">
+                class="px-4 py-2 rounded-xl border border-pink-200 text-ink/70 hover:bg-pink-50 transition">
                 Quay lại đơn hàng
             </a>
         </div>
@@ -147,9 +147,9 @@
         form.addEventListener('submit', (e) => {
             if (!(+input.value > 0)) {
                 e.preventDefault();
-                wrap.classList.add('ring-2', 'ring-rose-400', 'rounded-lg');
+                wrap.classList.add('ring-2', 'ring-pink-400', 'rounded-lg');
                 text.textContent = 'Vui lòng chọn số sao';
-                setTimeout(() => wrap.classList.remove('ring-2', 'ring-rose-400'), 1200);
+                setTimeout(() => wrap.classList.remove('ring-2', 'ring-pink-400'), 1200);
             }
         });
 

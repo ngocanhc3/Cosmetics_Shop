@@ -40,7 +40,7 @@ return \Illuminate\Support\Facades\Route::has('account.addresses.default')
         @forelse($addresses as $a)
         @php $est = $estimates[$a->id] ?? ['km'=>null,'fee'=>null]; @endphp
 
-        <div class="bg-white rounded-2xl border border-rose-100 shadow-card p-5 hover:shadow-lg hover:border-rose-200 transition">
+        <div class="bg-white rounded-2xl border border-pink-100 shadow-card p-5 hover:shadow-lg hover:border-pink-200 transition">
             <div class="flex items-start justify-between">
                 <div class="text-lg font-semibold">{{ $a->name }}</div>
                 <div class="flex gap-2">
@@ -70,14 +70,14 @@ return \Illuminate\Support\Facades\Route::has('account.addresses.default')
 
             <div class="mt-4 grid grid-cols-2 gap-3">
                 <button type="button"
-                    class="btn-edit rounded-lg border border-rose-200 px-3 py-2 text-sm hover:bg-rose-50"
+                    class="btn-edit rounded-lg border border-pink-200 px-3 py-2 text-sm hover:bg-pink-50"
                     data-update="{{ $addrBase.'/'.$a->id }}"
                     data-address='@json($a)'>
                     Sửa
                 </button>
 
                 <button type="button"
-                    class="btn-delete rounded-lg border border-rose-200 px-3 py-2 text-sm hover:bg-rose-50"
+                    class="btn-delete rounded-lg border border-pink-200 px-3 py-2 text-sm hover:bg-pink-50"
                     data-action="{{ $destroyUrl($a->id) }}">
                     Xoá
                 </button>
@@ -98,7 +98,7 @@ return \Illuminate\Support\Facades\Route::has('account.addresses.default')
                 <form method="POST" action="{{ $defaultUrl($a->id) }}">
                     @csrf
                     <input type="hidden" name="type" value="billing">
-                    <button class="w-full rounded-lg border border-rose-200 px-3 py-2 text-sm hover:bg-rose-50">
+                    <button class="w-full rounded-lg border border-pink-200 px-3 py-2 text-sm hover:bg-pink-50">
                         Đặt mặc định thanh toán
                     </button>
                 </form>
@@ -107,7 +107,7 @@ return \Illuminate\Support\Facades\Route::has('account.addresses.default')
         </div>
         @empty
         <div class="col-span-3">
-            <div class="bg-white rounded-2xl border border-rose-100 shadow-card p-10 text-center">
+            <div class="bg-white rounded-2xl border border-pink-100 shadow-card p-10 text-center">
                 <div class="text-ink font-medium">Chưa có địa chỉ.</div>
             </div>
         </div>
@@ -131,23 +131,23 @@ return \Illuminate\Support\Facades\Route::has('account.addresses.default')
                 <div>
                     <label class="block text-sm font-medium mb-1">Tên người nhận<span class="text-red-500">*</span></label>
                     <input name="name" id="f_name" required
-                        class="w-full rounded-md border border-rose-200 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
+                        class="w-full rounded-md border border-pink-200 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1">Số điện thoại<span class="text-red-500">*</span></label>
                     <input name="phone" id="f_phone" required
-                        class="w-full rounded-md border border-rose-200 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
+                        class="w-full rounded-md border border-pink-200 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
                 </div>
                 <div class="md:col-span-2">
                     <label class="block text-sm font-medium mb-1">Địa chỉ<span class="text-red-500">*</span></label>
                     <input name="line1" id="f_line1"
-                        class="w-full rounded-md border border-rose-200 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
+                        class="w-full rounded-md border border-pink-200 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-400">
                 </div>
 
                 {{-- Provinces API --}}
                 <div>
                     <label class="block text-sm font-medium mb-1">Tỉnh/Thành<span class="text-red-500">*</span></label>
-                    <select id="sel_prov" required class="w-full rounded-md border border-rose-200 px-3 py-2 outline-none">
+                    <select id="sel_prov" required class="w-full rounded-md border border-pink-200 px-3 py-2 outline-none">
                         <option value="">— Chọn Tỉnh/Thành —</option>
                     </select>
                     <input type="hidden" name="province" id="hid_prov_name">
@@ -155,7 +155,7 @@ return \Illuminate\Support\Facades\Route::has('account.addresses.default')
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1">Quận/Huyện<span class="text-red-500">*</span></label>
-                    <select id="sel_dist" required class="w-full rounded-md border border-rose-200 px-3 py-2 outline-none">
+                    <select id="sel_dist" required class="w-full rounded-md border border-pink-200 px-3 py-2 outline-none">
                         <option value="">— Chọn Quận/Huyện —</option>
                     </select>
                     <input type="hidden" name="district" id="hid_dist_name">
@@ -163,7 +163,7 @@ return \Illuminate\Support\Facades\Route::has('account.addresses.default')
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1">Phường/Xã<span class="text-red-500">*</span></label>
-                    <select id="sel_ward" required class="w-full rounded-md border border-rose-200 px-3 py-2 outline-none">
+                    <select id="sel_ward" required class="w-full rounded-md border border-pink-200 px-3 py-2 outline-none">
                         <option value="">— Chọn Phường/Xã —</option>
                     </select>
                     <input type="hidden" name="ward" id="hid_ward_name">
@@ -176,14 +176,14 @@ return \Illuminate\Support\Facades\Route::has('account.addresses.default')
 
                 {{-- MAP --}}
                 <div class="md:col-span-2">
-                    <div id="addrMap" class="w-full h-64 rounded-xl border border-rose-200 overflow-hidden"></div>
+                    <div id="addrMap" class="w-full h-64 rounded-xl border border-pink-200 overflow-hidden"></div>
                     <div class="text-xs text-ink/60 mt-1">Bản đồ tự di chuyển theo Tỉnh → Quận → Phường; có thể kéo pin để chỉnh.</div>
                 </div>
             </div>
 
             <div class="flex items-center justify-end gap-3">
                 <button type="button" data-close
-                    class="rounded-lg border border-rose-200 px-4 py-2 text-sm hover:bg-rose-50">Huỷ</button>
+                    class="rounded-lg border border-pink-200 px-4 py-2 text-sm hover:bg-pink-50">Huỷ</button>
                 <button class="rounded-lg bg-brand-600 text-white px-4 py-2 text-sm hover:bg-brand-700">Lưu</button>
             </div>
         </form>
@@ -197,10 +197,10 @@ return \Illuminate\Support\Facades\Route::has('account.addresses.default')
         <div class="text-sm text-ink/70 mt-2">Hành động này không thể hoàn tác.</div>
         <div class="mt-5 flex justify-end gap-2">
             <button type="button" data-close
-                class="rounded-lg border border-rose-200 px-4 py-2 text-sm hover:bg-rose-50">Huỷ</button>
+                class="rounded-lg border border-pink-200 px-4 py-2 text-sm hover:bg-pink-50">Huỷ</button>
             <form id="confirmForm" method="POST" action="#">
                 @csrf @method('delete')
-                <button class="rounded-lg bg-rose-600 text-white px-4 py-2 text-sm hover:bg-rose-700">Xoá</button>
+                <button class="rounded-lg bg-pink-600 text-white px-4 py-2 text-sm hover:bg-pink-700">Xoá</button>
             </form>
         </div>
     </div>
