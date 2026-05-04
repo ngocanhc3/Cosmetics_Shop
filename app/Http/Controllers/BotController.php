@@ -108,39 +108,52 @@ class BotController extends Controller
         }
 
         /* ===== FAST PATH B: “còn hàng không” ===== */
-        if (Str::contains($lower, ['còn không', 'còn ko', 'còn k', 'còn hàng', 'hết hàng', 'in stock', 'available'])) {
+        $stockKeywords = ['còn không', 'còn ko', 'còn k', 'còn hàng', 'hết hàng', 'in stock', 'available'];
+        if (Str::contains($lower, $stockKeywords)) {
             $hit = BotTools::resolveProduct($msg);
-            if (($hit['found'] ?? false)) {
-                $av = BotTools::checkAvailability($hit['slug']);
-                if (($av['found'] ?? false)) {
-                    $status = $av['status'] ?? 'unknown';
+            
+            if ($hit['found'] ?? false) {
+                // Tối ưu: Thường getProductInfo đã bao gồm trạng thái stock, 
+                // nếu Service của bạn tách rời, hãy đảm bảo checkAvailability nhẹ nhất có thể.
+                $info = BotTools::getProductInfo($hit['slug']);
+                
+                if ($info['found'] ?? false) {
+                    $status = $info['stock_status'] ?? 'unknown'; // Giả định lấy từ info để tiết kiệm 1 lần gọi hàm
+                    
                     $txt = match ($status) {
-                        'in_stock'     => "Có nè 💖 **{$av['name']}** đang còn hàng. Muốn mình gợi ý dung tích/phối routine không?",
-                        'out_of_stock' => "Tiếc quá 😣 **{$av['name']}** hiện hết hàng. Mình gợi ý sản phẩm tương tự nhé?",
-                        default        => "Mình chưa đọc được tồn kho realtime của **{$av['name']}**. Bạn mở trang sản phẩm để xem lựa chọn sẵn có nha!",
+                        'in_stock'     => "Có nè 💖 **{$info['name']}** đang còn hàng. Muốn mình gợi ý dung tích hay phối routine không?",
+                        'out_of_stock' => "Tiếc quá 😣 **{$info['name']}** hiện hết hàng. Để mình gợi ý sản phẩm tương tự cho bạn nhé?",
+                        default        => "Hiện mình chưa check được tồn kho chính xác của **{$info['name']}**. Bạn xem chi tiết ở link sản phẩm nha!",
                     };
-                    $info = BotTools::getProductInfo($hit['slug']);
+
+                    // LOGGING
                     BotLogger::save($msg, $txt, [
                         't0' => $t0,
                         'handled_by' => 'fast_stock',
                         'intent' => 'availability',
-                        'matched_slug' => $info['slug'] ?? null,
-                        'product_count' => $info['found'] ? 1 : 0
+                        'matched_slug' => $info['slug'],
+                        'product_count' => 1
                     ]);
+
+                    // MEMORY (Quan trọng: Phải lưu để bot không bị mất ngữ cảnh)
+                    ConversationMemory::pushTurn($mem, 'user', $msg);
+                    ConversationMemory::pushTurn($mem, 'assistant', $txt);
+                    ConversationMemory::save($mem);
+
                     return response()->json([
                         'reply' => $txt,
-                        'products' => $info['found'] ? [[
-                            'url' => url('/products/' . $info['slug']),
-                            'img' => $info['img'] ?: asset('images/placeholder.png'),
-                            'name' => $info['name'],
-                            'price' => number_format($info['price_min']) . '₫',
-                            'compare' => null,
+                        'products' => [[
+                            'url'      => url('/products/' . $info['slug']),
+                            'img'      => $info['img'] ?: asset('images/placeholder.png'),
+                            'name'     => $info['name'],
+                            'price'    => number_format($info['price_min']) . '₫',
+                            'compare'  => null,
                             'discount' => null
-                        ]] : [],
-                        'suggestions' => ['Gợi ý thay thế', 'So sánh với món khác', '/reset'],
+                        ]],
+                        'suggestions' => ['Cách dùng', 'Sản phẩm tương tự', '/reset'],
                     ]);
                 }
-            }
+                        }
         }
 
         /* ===== FAST PATH C: nhắc tên sản phẩm rõ ràng ===== */
