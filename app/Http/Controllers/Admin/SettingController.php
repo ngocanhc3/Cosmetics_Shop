@@ -10,24 +10,27 @@ use Illuminate\Support\Arr;
 
 class SettingController extends Controller
 {
-    public function index()
-    {
-        return view('admin.settings.index');
-    }
+{
+        // 1. Lấy dữ liệu đã validate
+        $data = Arr::dot($request->validated());
 
-    public function store(SettingFormRequest $request)
-    {
-        $data = $request->validated();
+        // 2. Sử dụng Transaction để đảm bảo tính toàn vẹn dữ liệu
+        DB::transaction(function () use ($data) {
+            foreach ($data as $key => $value) {
+                // Ép kiểu chuẩn xác cho database (sqlite/mysql/pgsql)
+                $formattedValue = is_bool($value) ? ($value ? '1' : '0') : $value;
 
-        // phẳng mảng theo dot-notation: store.name => ...
-        foreach (Arr::dot($data) as $key => $value) {
-            // ép kiểu đơn giản cho checkbox/numeric
-            if (is_bool($value)) {
-                $value = $value ? 1 : 0;
+                // Sử dụng updateOrCreate để tối ưu logic (vừa cập nhật vừa thêm mới nếu thiếu)
+                Setting::updateOrCreate(
+                    ['key' => $key],
+                    ['value' => $formattedValue]
+                );
             }
-            Setting::set($key, $value);
-        }
+        });
 
-        return back()->with('ok', 'Đã lưu cài đặt.');
+        // 3. Xóa cache cài đặt (nếu bạn có dùng cache ở tầng Model hoặc Global Middleware)
+        // Cache::forget('settings'); 
+
+        return back()->with('ok', 'Cài đặt hệ thống đã được cập nhật thành công.');
     }
 }
