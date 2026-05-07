@@ -99,48 +99,65 @@
 
 {{-- Modal edit dùng lại cho tất cả --}}
 <div id="editModal" class="fixed inset-0 z-50 hidden items-center justify-center">
+    {{-- Overlay --}}
     <div class="absolute inset-0 bg-black/40" data-close></div>
+
+    {{-- Content --}}
     <div class="relative bg-white w-full max-w-lg mx-4 rounded-2xl shadow-xl border">
         <form id="editForm" method="post" class="p-5">
             @csrf @method('PATCH')
 
-            <div class="flex items-center justify-between mb-3">
-                <div class="text-lg font-semibold">Sửa đánh giá</div>
-                <button type="button" class="text-ink/60 hover:text-ink" data-close>
+            {{-- Header --}}
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-semibold">Sửa đánh giá</h2>
+                <button type="button" class="text-ink/60 hover:text-ink" data-close aria-label="Đóng">
                     <i class="fa-solid fa-xmark text-xl"></i>
                 </button>
             </div>
 
             {{-- Rating --}}
             <input type="hidden" id="editRating" name="rating" value="0">
-            <div class="mb-3">
-                <div class="text-sm font-medium mb-1">Số sao</div>
+            <div class="mb-4">
+                <label class="text-sm font-medium block mb-1">Số sao</label>
                 <div id="ratingWrap" class="flex items-center gap-1.5 text-amber-500">
                     @for($i=1;$i<=5;$i++)
-                        <button type="button" class="star w-8 h-8" data-value="{{ $i }}">
-                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full">
-                            <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.402 8.168L12 18.896l-7.336 3.869 1.402-8.168L.132 9.21l8.2-1.192L12 .587z" />
-                        </svg>
+                        <button type="button"
+                                class="star w-8 h-8 transition transform hover:scale-110 focus:scale-110 outline-none"
+                                data-value="{{ $i }}">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full">
+                                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.402 8.168L12 18.896l-7.336 3.869 1.402-8.168L.132 9.21l8.2-1.192L12 .587z" />
+                            </svg>
                         </button>
-                        @endfor
-                        <span id="ratingText" class="ml-2 text-sm text-ink/60">Chọn 1–5</span>
+                    @endfor
+                    <span id="ratingText" class="ml-2 text-sm text-ink/60">Chọn 1–5 sao</span>
                 </div>
             </div>
 
-            <div class="mb-3">
-                <label class="text-sm font-medium">Tiêu đề (tuỳ chọn)</label>
-                <input id="editTitle" name="title" class="mt-1 w-full border rounded-xl p-3 outline-none focus:ring-2 focus:ring-pink-400">
+            {{-- Title --}}
+            <div class="mb-4">
+                <label for="editTitle" class="text-sm font-medium">Tiêu đề (tuỳ chọn)</label>
+                <input id="editTitle" name="title"
+                       class="mt-1 w-full border border-pink-200 rounded-xl p-3 outline-none focus:ring-2 focus:ring-pink-400 shadow-sm"
+                       placeholder="Ví dụ: Sản phẩm rất tốt">
             </div>
 
-            <div class="mb-3">
-                <label class="text-sm font-medium">Nội dung</label>
+            {{-- Content --}}
+            <div class="mb-4">
+                <label for="editContent" class="text-sm font-medium">Nội dung</label>
                 <textarea id="editContent" name="content" rows="6" required minlength="10" maxlength="2000"
-                    class="mt-1 w-full border rounded-xl p-3 outline-none focus:ring-2 focus:ring-pink-400"></textarea>
+                          class="mt-1 w-full border border-pink-200 rounded-xl p-3 outline-none focus:ring-2 focus:ring-pink-400 shadow-sm"
+                          placeholder="Chia sẻ trải nghiệm sau khi mua & sử dụng..."></textarea>
+                <div class="flex justify-end mt-1 text-xs text-ink/50">
+                    <span id="editCount">0</span>/2000
+                </div>
             </div>
 
+            {{-- Actions --}}
             <div class="flex items-center justify-end gap-2">
-                <button type="button" class="px-4 py-2 rounded-xl border" data-close>Huỷ</button>
-                <button class="px-5 py-2.5 rounded-xl text-white bg-gradient-to-r from-pink-600 to-pink-600 hover:from-pink-500 hover:to-pink-500">
+                <button type="button" class="px-4 py-2 rounded-xl border border-pink-200 text-ink/70 hover:bg-pink-50 transition" data-close>
+                    Huỷ
+                </button>
+                <button class="px-5 py-2.5 rounded-xl text-white bg-gradient-to-r from-pink-600 to-pink-600 hover:from-pink-500 hover:to-pink-500 transition">
                     Lưu thay đổi
                 </button>
             </div>
