@@ -144,7 +144,7 @@ class ShippingVoucherController extends Controller
     public function destroy(ShippingVoucher $shipvoucher)
     {
         $shipvoucher->delete();
-
+ 
         return back()->with('ok', 'Đã xoá.');
     }
 
