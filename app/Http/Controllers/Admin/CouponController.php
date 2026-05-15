@@ -10,6 +10,7 @@ use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Carbon\Carbon;
 
 class CouponController extends Controller
@@ -107,18 +108,21 @@ class CouponController extends Controller
         $data = $this->validateForm($r);
         $payload = $this->mapToPayload($data);
 
-        if ($payload['applied_to'] === 'order') {
-            $payload['applies_to_ids'] = [];
-        }
+        $coupon = Coupon::create($payload);
+        $this->syncTargets($coupon, $data['applies_to'], $data['applies_to_ids'] ?? []);
 
-        Coupon::create($payload);
         return redirect()->route('admin.coupons.index')->with('ok', 'Tạo mã giảm giá thành công!');
     }
 
     /** Form sửa */
     public function edit(Coupon $coupon)
     {
-        $preselected = collect(old('applies_to_ids', $coupon->applies_to_ids ?? []))
+        $existingIds = [];
+        if (Schema::hasTable('coupon_targets')) {
+            $existingIds = $coupon->targets()->pluck('target_id')->all();
+        }
+
+        $preselected = collect(old('applies_to_ids', $existingIds))
             ->map(fn($id) => (string) $id)->values()->all();
 
         return view('admin.coupons.edit', compact('coupon', 'preselected'));
@@ -130,11 +134,9 @@ class CouponController extends Controller
         $data = $this->validateForm($r, $coupon->id);
         $payload = $this->mapToPayload($data);
 
-        if ($payload['applied_to'] === 'order') {
-            $payload['applies_to_ids'] = [];
-        }
-
         $coupon->update($payload);
+        $this->syncTargets($coupon, $data['applies_to'], $data['applies_to_ids'] ?? []);
+
         return redirect()->route('admin.coupons.edit', $coupon)->with('ok', 'Cập nhật mã giảm giá thành công!');
     }
 
@@ -207,8 +209,8 @@ class CouponController extends Controller
             'per_customer_limit' => ['nullable', 'integer', 'min:0'],
 
             'applies_to'         => ['required', Rule::in(['order', 'category', 'brand', 'product'])],
-            'applies_to_ids'     => ['array'],
-            'applies_to_ids.*'   => ['string'],
+            'applies_to_ids'     => ['required_if:applies_to,category,brand,product', 'array'],
+            'applies_to_ids.*'   => ['integer'],
 
             'start_at'           => ['nullable', 'date'],
             'end_at'             => ['nullable', 'date', 'after_or_equal:start_at'],
@@ -221,28 +223,59 @@ class CouponController extends Controller
         $percent = $this->toFloat($data['value']);
         $fixed   = $this->toInt($data['value']);
 
-        return [
+        $payload = [
             'code'                 => strtoupper(trim($data['code'])),
             'name'                 => $data['name'] ?? null,
-            'description'          => $data['description'] ?? null,
             'is_active'            => (bool) $data['is_active'],
 
             'discount_type'        => $data['type'],
-            'discount_value'       => $data['type'] === 'percent'
-                ? max(0, min(100, $percent))
-                : $fixed,
+            'percent'              => $data['type'] === 'percent' ? max(0, min(100, $percent)) : null,
+            'amount'               => $data['type'] === 'fixed' ? $fixed : null,
             'max_discount'         => $this->toInt($data['max_discount'] ?? null),
-            'min_order_total'      => $this->toInt($data['min_order_value'] ?? null),
+            'min_subtotal'         => $this->toInt($data['min_order_value'] ?? null),
 
             'usage_limit'          => isset($data['usage_limit']) ? (int) $data['usage_limit'] : null,
-            'usage_limit_per_user' => isset($data['per_customer_limit']) ? (int) $data['per_customer_limit'] : null,
+            'per_user_limit'       => isset($data['per_customer_limit']) ? (int) $data['per_customer_limit'] : null,
 
-            'applied_to'           => $data['applies_to'],
-            'applies_to_ids'       => array_values(array_map('strval', $data['applies_to_ids'] ?? [])),
+            'apply_scope'          => $data['applies_to'] === 'order' ? 'order' : 'item',
 
             'starts_at'            => !empty($data['start_at']) ? Carbon::parse($data['start_at']) : null,
             'ends_at'              => !empty($data['end_at'])   ? Carbon::parse($data['end_at'])   : null,
         ];
+
+        if (Schema::hasColumn('coupons', 'description')) {
+            $payload['description'] = $data['description'] ?? null;
+        }
+
+        return $payload;
+    }
+
+    protected function syncTargets(Coupon $coupon, string $appliesTo, array $ids): void
+    {
+        if (! Schema::hasTable('coupon_targets')) {
+            return;
+        }
+
+        $coupon->targets()->delete();
+
+        if ($appliesTo === 'order') {
+            return;
+        }
+
+        $targetIds = collect($ids)
+            ->map(fn($id) => (int) $id)
+            ->filter()
+            ->unique()
+            ->values()
+            ->all();
+
+        foreach ($targetIds as $targetId) {
+            $coupon->targets()->create([
+                'target_type' => $appliesTo,
+                'target_id' => $targetId,
+                'is_excluded' => false,
+            ]);
+        }
     }
 
     protected function toInt($v): ?int

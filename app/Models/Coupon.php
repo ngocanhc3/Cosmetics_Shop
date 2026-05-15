@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Schema;
 
 class Coupon extends Model
 {
     protected $fillable = [
         'name',
         'code',
+        'description',
         'apply_scope',     // order | item | shipping
         'discount_type',   // percent | fixed | free_shipping
         'percent',
@@ -18,9 +20,11 @@ class Coupon extends Model
         'max_discount',
         'shipping_cap',
         'usage_limit',
-        'used_count',
         'per_user_limit',
-        'allow_sale_items',
+        'first_order_only',
+        'require_logged_in',
+        'stacking',
+        'exclude_sale_items',
         'starts_at',
         'ends_at',
         'is_active',
@@ -28,11 +32,16 @@ class Coupon extends Model
     protected $casts = [
         'starts_at' => 'datetime',
         'ends_at'   => 'datetime',
-        // các cast khác nếu có:
-        'is_active'      => 'bool',
-        'min_subtotal'   => 'int',
-        'max_discount'   => 'int',
-        'discount_value' => 'int',
+        'is_active' => 'bool',
+        'min_subtotal' => 'int',
+        'max_discount' => 'int',
+        'percent' => 'int',
+        'amount' => 'int',
+        'usage_limit' => 'int',
+        'per_user_limit' => 'int',
+        'first_order_only' => 'bool',
+        'require_logged_in' => 'bool',
+        'exclude_sale_items' => 'bool',
         'target_brands'     => 'array',
         'target_categories' => 'array',
         'target_products'   => 'array',
@@ -85,17 +94,59 @@ class Coupon extends Model
         return 0.0;
     }
 
+    public function getDiscountValueAttribute($v)
+    {
+        if (!is_null($v)) return $v;
+        if (($this->attributes['discount_type'] ?? '') === 'percent') {
+            return (float)($this->attributes['percent'] ?? 0);
+        }
+        return (int)($this->attributes['amount'] ?? 0);
+    }
+
+    public function getMinOrderTotalAttribute($v): int
+    {
+        if (!is_null($v)) return (int)$v;
+        return (int)($this->attributes['min_subtotal'] ?? 0);
+    }
+
+    public function getAppliedToAttribute($v): string
+    {
+        if (!is_null($v)) return $v;
+        if (($this->attributes['apply_scope'] ?? 'order') === 'order') {
+            return 'order';
+        }
+
+        if (! Schema::hasTable('coupon_targets')) {
+            return 'product';
+        }
+
+        if ($this->relationLoaded('targets') && $this->targets->isNotEmpty()) {
+            return (string)$this->targets->first()->target_type;
+        }
+
+        $firstTarget = $this->targets()->first();
+        if ($firstTarget) {
+            return (string)$firstTarget->target_type;
+        }
+
+        return 'product';
+    }
+
+    public function getUsageLimitPerUserAttribute($v): int
+    {
+        if (!is_null($v)) return (int)$v;
+        return (int)($this->attributes['per_user_limit'] ?? 0);
+    }
+
     public function getMinSubtotalAttribute($v): int
     {
         if (!is_null($v)) return (int)$v;
-        // schema cũ
         return (int)($this->attributes['min_order_total'] ?? 0);
     }
 
     public function getApplyScopeAttribute($v): string
     {
         if (!is_null($v)) return (string)$v;
-        // schema cũ: applied_to = order | category | brand | product
         $applied = $this->attributes['applied_to'] ?? 'order';
         return $applied === 'order' ? 'order' : 'item';
     }

@@ -136,6 +136,13 @@ class CouponController extends Controller
         abort_unless(auth()->check(), 403);
         $uid = auth()->id();
 
+        $hasDescription   = Schema::hasColumn('coupons', 'description');
+        $hasDiscountValue = Schema::hasColumn('coupons', 'discount_value');
+        $hasMinOrderTotal = Schema::hasColumn('coupons', 'min_order_total');
+
+        $discountExpression = $hasDiscountValue ? 'c.discount_value' : 'COALESCE(c.percent, c.amount)';
+        $minOrderExpression = $hasMinOrderTotal ? 'c.min_order_total' : 'COALESCE(c.min_subtotal, 0)';
+
         $rows = DB::table('user_coupons as uc')
             ->join('coupons as c', 'c.id', '=', 'uc.coupon_id')
             ->leftJoin('coupon_usages as u', function ($j) {
@@ -144,8 +151,9 @@ class CouponController extends Controller
             ->where('uc.user_id', $uid)
             ->selectRaw(
                 'uc.id as user_coupon_id, uc.code as user_code, uc.times,
-                 c.id as coupon_id, c.code as sys_code, c.name, c.description,
-                 c.discount_type, c.discount_value, c.max_discount, c.min_order_total,
+                 c.id as coupon_id, c.code as sys_code, c.name, ' .
+                 ($hasDescription ? 'c.description' : 'NULL as description') . ',
+                 c.discount_type, ' . $discountExpression . ' as discount_value, c.max_discount, ' . $minOrderExpression . ' as min_order_total,
                  c.starts_at, c.ends_at, c.is_active,
                  COUNT(u.id) as used_count'
             )
@@ -156,11 +164,11 @@ class CouponController extends Controller
                 'c.id',
                 'c.code',
                 'c.name',
-                'c.description',
+                $hasDescription ? 'c.description' : DB::raw('NULL'),
                 'c.discount_type',
-                'c.discount_value',
+                DB::raw($discountExpression),
                 'c.max_discount',
-                'c.min_order_total',
+                DB::raw($minOrderExpression),
                 'c.starts_at',
                 'c.ends_at',
                 'c.is_active'
